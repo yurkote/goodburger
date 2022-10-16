@@ -1,1 +1,96 @@
 @import "../../scss/variables";
+
+.sortbar {
+  background-color: $color-0;
+  padding: rem(20);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sortbar-items {
+  &:nth-child(1) {
+    flex: 0 0 80%;
+    overflow: overlay;
+    transition: all 1s ease;
+    &:hover {
+      &::-webkit-scrollbar {
+        transition: all 1s ease;
+        display: block;
+      }
+    }
+    &::-webkit-scrollbar {
+      display: none;
+      height: rem(5);
+      background-color: $color-2;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: $color-3;
+    }
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      background-color: $color-2;
+    }
+  }
+}
+.sortbar-list {
+  padding: rem(10);
+  display: flex;
+  gap: rem(10);
+}
+.sortbar-list__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-2;
+  background: linear-gradient(
+    90deg,
+    rgba(155, 155, 0, 1) 0%,
+    rgba(255, 255, 0, 1) 50%,
+    rgba(155, 155, 0, 1) 100%
+  );
+  padding: rem(10);
+  border-radius: 40px;
+  height: 50px;
+  min-width: rem(120);
+  font-size: rem(20);
+  font-weight: 400;
+  &:hover {
+    cursor: pointer;
+    background: rgb(155, 155, 0);
+  }
+}
+.sortbar-active {
+  background: none;
+  background-color: $color-1;
+  color: $color-3;
+  &:hover{
+    cursor: not-allowed;
+    background-color: $color-1;
+  }
+}
+.sorting-box {
+  display: flex;
+  gap: rem(10);
+  align-items: center;
+}
+.sort-button {
+  @media screen and (max-width: $mobileSmall) {
+    display: none;
+  }
+}
+.sort-button__text {
+  font-size: rem(20);
+  text-transform: lowercase;
+}
+.sorting-select {
+}
+.sorting-select__item {
+  text-align: center;
+  display: none;
+}
+.sort-active {
+  display: block;
+  border-bottom: 1px dashed #000;
+}

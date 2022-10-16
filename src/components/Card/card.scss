@@ -1,0 +1,97 @@
+@import "../../scss/variables";
+
+.card {
+  border-radius: 10px;
+  min-width: 400px;
+  background-color: rgb(156, 127, 127);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 0.4s ease;
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 20%) 0px 3px 5px -1px, rgb(0 0 0 / 14%) 0px 6px 10px 0px, rgb(0 0 0 / 12%) 0px 1px 18px 0px;
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: rgb(0 0 0 / 20%) 0px 7px 8px -4px, rgb(0 0 0 / 14%) 0px 12px 17px 2px, rgb(0 0 0 / 12%) 0px 5px 22px 4px;
+  }
+  @media screen and (max-width: $mobileSmall) {
+    min-width: 300px;
+  }
+}
+.card-img {
+  position: relative;
+}
+.image-card {
+  cursor: pointer;
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.card-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-bottom: rem(10);
+  padding-right: rem(10);
+  display: flex;
+  gap: rem(20);
+  align-items: center;
+  font-size: rem(20);
+}
+.info-kkal {
+  background-color: #000;
+  padding: rem(10);
+  border-radius: 20px;
+}
+.info-weight {
+  background-color: #000;
+  padding: rem(10);
+  border-radius: 20px;
+}
+.card-title {
+  font-size: rem(20);
+  padding: rem(10) rem(20);
+  color: #000;
+}
+.card-addons-box {
+  padding: rem(10);
+}
+.addons-descr {
+  font-size: rem(16);
+  font-weight: 600;
+  padding-bottom: rem(10);
+}
+.addons-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: rem(10);
+}
+.addons-item {
+  padding: rem(15);
+  background-color: #000;
+  border-radius: 25px;
+  flex: 1 0 auto;
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: rem(14);
+  }
+}
+.card-footer {
+  padding: rem(40) rem(50);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-price {
+  font-size: rem(20);
+}
+.card-button-box {
+}
+.card-button {
+  background-color: $mainColor;
+  font-size: rem(20);
+  padding: rem(20);
+  border-radius: 20px;
+}

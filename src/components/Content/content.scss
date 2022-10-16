@@ -1,1 +1,26 @@
 @import "../../scss/variables";
+
+.content {
+  padding: rem(20);
+  background-color: $color-0;
+  color: antiquewhite;
+}
+.content-title {
+  padding-left: rem(20);
+  padding-bottom: rem(20);
+  font-size: rem(40);
+  color: antiquewhite;
+  cursor: default;
+}
+.content-box {
+  padding: rem(20);
+}
+.content-box__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: rem(20);
+  & > * {
+    flex: 1 1 20%;
+  }
+}

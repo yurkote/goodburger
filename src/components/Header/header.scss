@@ -1,10 +1,36 @@
 @import "../../scss/variables";
 
 .header {
+  background-color: $color-0;
+  padding: rem(20);
+  &::after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    margin-top: rem(10);
+    height: 3px;
+    width: 75%;
+    background-color: $color-3;
+    transition: all 0.4s ease;
+  }
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
 }
 .header-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .header-box__item {
+  &-input {
+    flex: 0 1 50%;
+    @media screen and (max-width: $mobileSmall) {
+      display: none;
+    }
+  }
 }
 .header-item {
 }
@@ -13,14 +39,87 @@
 .logo-link {
 }
 .logo-img {
+  width: 100%;
+  object-fit: contain;
 }
 .header-item__input {
+  background-color: #fff;
+  border-radius: 10px;
 }
 .header-input {
+  border-radius: 10px;
+  padding: rem(5) rem(20);
+  height: rem(50);
+  width: 100%;
+  background-color: #fff;
+  background: linear-gradient(
+    90deg,
+    rgba(155, 155, 0, 1) 0%,
+    rgba(255, 255, 0, 1) 50%,
+    rgba(155, 155, 0, 1) 100%
+  );
+  &:hover {
+    background: none;
+    background-color: rgba($color-3, 0.5);
+  }
+  &:focus {
+    background: none;
+    background-color: $color-3;
+  }
 }
 .header-item__cart {
+  height: rem(50);
+  width: 140px;
+  border-radius: 10px;
+  background-color: $color-4;
 }
-.header-cart {
+.header-cart-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: rem(10);
+  background-color: $color-4;
+  border-radius: 10px;
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    rgba(155, 155, 0, 1) 0%,
+    rgba(255, 255, 0, 1) 50%,
+    rgba(155, 155, 0, 1) 100%
+  );
+  &:hover {
+    background: none;
+    background-color: rgba(#fff, 0.4);
+  }
 }
-.cart-icon {
+.cart-button__price {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 20px;
+  padding-right: rem(5);
+  margin-right: rem(5);
+  border-right: 2px solid $color-0;
+}
+.cart-button__badge {
+  position: absolute;
+  overflow: hidden;
+  top: -15px;
+  right: -15px;
+  padding: rem(10);
+  padding-left: rem(12);
+  width: 35px;
+  height: 35px;
+  background-color: $color-0;
+  color: $color-4;
+  border: 1px solid $color-3;
+  border-left: none;
+  border-bottom: none;
+  font-size: rem(16);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
