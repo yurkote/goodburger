@@ -28,7 +28,7 @@ const Card = ({ title, imageUrl, price, weight, calories, addons }) => {
       <div className="card-img">
         <img src={imageUrl} alt="dish" className="image-card" />
         <div className="card-info info">
-          <span className="info-kkal">~{calories}kkal</span>
+          <span className="info-kkal">~{calories}Kcal</span>
           <span className="info-weight">{weight}g</span>
         </div>
       </div>
@@ -41,10 +41,15 @@ const Card = ({ title, imageUrl, price, weight, calories, addons }) => {
           {addons.map((item) => {
             return (
               <li className="addons-item" key={item.title}>
-                <span>{`${item.title} + ${item.weightAddon} + $${item.priceAddon}`}</span>
+                <span>{`${item.title}`}</span>
+                <span>${item.priceAddon}</span>
               </li>
             );
           })}
+          <li className="addons-item addon-active">
+            <span>It is should be active addon</span>
+            <span>$666</span>
+          </li>
         </ul>
       </div>
       <div className="card-footer">
@@ -52,7 +57,10 @@ const Card = ({ title, imageUrl, price, weight, calories, addons }) => {
           <span>${price}</span>
         </div>
         <div className="card-button-box">
-          <button className="card-button">Add to cart</button>
+          <button className="card-button">
+            <span>Add to cart</span>
+            {/* <span className="card-button__counter">10</span> */}
+          </button>
         </div>
       </div>
     </div>

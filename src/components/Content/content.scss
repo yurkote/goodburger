@@ -3,13 +3,13 @@
 .content {
   padding: rem(20);
   background-color: $color-0;
-  color: antiquewhite;
+  color: $secondColor;
 }
 .content-title {
   padding-left: rem(20);
   padding-bottom: rem(20);
   font-size: rem(40);
-  color: antiquewhite;
+  color: $secondColor;
   cursor: default;
 }
 .content-box {

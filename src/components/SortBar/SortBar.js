@@ -16,6 +16,7 @@ const SortBar = () => {
         <div className="sorting-box">
           <div className="sort-button">
             <span className="sort-button__text">Sort by:</span>
+            <span className="sort-button__text-active"> active point</span>
           </div>
           <ul className="sorting-select">
             <li className="sorting-select__item sort-active">
