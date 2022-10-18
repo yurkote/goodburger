@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import "./card.scss";
 
@@ -23,6 +23,11 @@ import "./card.scss";
 // ];
 
 const Card = ({ title, imageUrl, price, weight, calories, addons }) => {
+  const refAddOn = useRef([]);
+
+  const handleClickAddOn = idx => e => {
+    refAddOn.current[idx].classList.toggle("addon-active");
+  };
   return (
     <div className="card">
       <div className="card-img">
@@ -38,18 +43,24 @@ const Card = ({ title, imageUrl, price, weight, calories, addons }) => {
       <div className="card-addons-box">
         <p className="addons-descr">Choose the addons:</p>
         <ul className="addons-list">
-          {addons.map((item) => {
+          {addons.map((item, i) => {
             return (
-              <li className="addons-item" key={item.title}>
+              <li
+                ref={el => refAddOn.current[i] = el}
+                onClick={handleClickAddOn(i)}
+                className="addons-item"
+                key={item.title}
+              >
                 <span>{`${item.title}`}</span>
                 <span>${item.priceAddon}</span>
               </li>
             );
           })}
-          <li className="addons-item addon-active">
+          {/* test active addOn - below */}
+          {/* <li className="addons-item addon-active">
             <span>It is should be active addon</span>
             <span>$666</span>
-          </li>
+          </li> */}
         </ul>
       </div>
       <div className="card-footer">

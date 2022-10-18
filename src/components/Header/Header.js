@@ -3,7 +3,7 @@ import React from "react";
 import logo from "../../assets/img/logo.png";
 import "./header.scss";
 
-const Header = () => {
+const Header = ({search}) => {
   return (
     <header className="header">
       <div className="header-box">
@@ -14,15 +14,17 @@ const Header = () => {
             </a>
           </div>
         </div>
-        <div className="header-box__item-input header-item">
-          <div className="header-item__input">
-            <input
-              type="text"
-              className="header-input"
-              placeholder="Search product..."
-            />
+        {search && (
+          <div className="header-box__item-input header-item">
+            <div className="header-item__input">
+              <input
+                type="text"
+                className="header-input"
+                placeholder="Search product..."
+              />
+            </div>
           </div>
-        </div>
+        )}
         <div className="header-box__item-cart header-item">
           <div className="header-item__cart">
             <a href="/" className="header-cart-button">
