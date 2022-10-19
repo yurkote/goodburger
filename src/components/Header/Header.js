@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import logo from "../../assets/img/logo.png";
 import "./header.scss";
@@ -9,9 +10,9 @@ const Header = ({search}) => {
       <div className="header-box">
         <div className="header-box__item-logo header-item header-item">
           <div className="header-item__logo">
-            <a href="/" className="logo-link">
+            <Link to={"/"} href="/" className="logo-link">
               <img src={logo} alt="logo" className="logo-img" />
-            </a>
+            </Link>
           </div>
         </div>
         {search && (
@@ -27,7 +28,7 @@ const Header = ({search}) => {
         )}
         <div className="header-box__item-cart header-item">
           <div className="header-item__cart">
-            <a href="/" className="header-cart-button">
+            <Link to={`cart/`} href="/" className="header-cart-button">
               <span className="cart-button__price">$5.00</span>
               <span className="cart-button__badge">99</span>
               <svg
@@ -59,7 +60,7 @@ const Header = ({search}) => {
                   strokeLinejoin="round"
                 ></path>
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

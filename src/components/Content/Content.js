@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../Card/Card";
+import CardLoader from "./CardLoader";
 
 import "./content.scss";
 
@@ -57,15 +58,15 @@ import "./content.scss";
 //   },
 // ];
 
-const Content = ({cards}) => {
+const Content = ({ cards, loading }) => {
   return (
     <section className="content">
       <h1 className="content-title">All dishes</h1>
       <div className="content-box">
         <div className="content-box__items">
-          {cards.map((item) => (
-            <Card key={item.id} {...item} />
-          ))}
+          {loading
+            ? [...new Array(6)].map((_, i) => <CardLoader key={i} />)
+            : cards.map((item) => <Card key={item.id} {...item} />)}
         </div>
       </div>
       {/* pagination component */}

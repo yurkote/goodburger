@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 
 import "./card.scss";
 
@@ -22,20 +23,22 @@ import "./card.scss";
 //   },
 // ];
 
-const Card = ({ title, imageUrl, price, weight, calories, addons }) => {
+const Card = ({ id, title, imageUrl, price, weight, calories, addons }) => {
   const refAddOn = useRef([]);
 
-  const handleClickAddOn = idx => e => {
+  const handleClickAddOn = (idx) => (e) => {
     refAddOn.current[idx].classList.toggle("addon-active");
   };
   return (
     <div className="card">
       <div className="card-img">
-        <img src={imageUrl} alt="dish" className="image-card" />
-        <div className="card-info info">
-          <span className="info-kkal">~{calories}Kcal</span>
-          <span className="info-weight">{weight}g</span>
-        </div>
+        <Link to={`/product/${id}`}>
+          <img src={imageUrl} alt="dish" className="image-card" />
+          <div className="card-info info">
+            <span className="info-kkal">~{calories}Kcal</span>
+            <span className="info-weight">{weight}g</span>
+          </div>
+        </Link>
       </div>
       <h2 className="card-title">
         <span>{title}</span>
@@ -46,7 +49,7 @@ const Card = ({ title, imageUrl, price, weight, calories, addons }) => {
           {addons.map((item, i) => {
             return (
               <li
-                ref={el => refAddOn.current[i] = el}
+                ref={(el) => (refAddOn.current[i] = el)}
                 onClick={handleClickAddOn(i)}
                 className="addons-item"
                 key={item.title}
