@@ -1,25 +1,26 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
+import AppContext from "../context";
 
 import "./sortbar.scss";
 
 const SortBar = () => {
-  const [activeType, setActiveType] = useState(0);
   const [openSort, setOpenSort] = useState(false);
-  const [activeSort, setActiveSort] = useState(0);
   const refSortWindow = useRef();
+  const { activeType, activeSort, handleClickType, handleClickSort } =
+    useContext(AppContext);
   useOnClickOutside(refSortWindow, () => setOpenSort(false));
 
   const typesDish = ["All", "Burgers", "Drinks"];
-  const sortVariant = ["Rating", "Relevant", "Best Selling", "A-z"];
-  const sortDisplay = sortVariant[activeSort];
-
-  const handleClickType = (typeDishIndex) => {
-    typeDishIndex === activeType
-      ? setActiveType(0)
-      : setActiveType(typeDishIndex);
-  };
-  const handleClickSort = (typeSort) => (e) => setActiveSort(typeSort);
+  const sortVariant = [
+    { name: "Relevant", sortProperty: "weight" },
+    { name: "Rating", sortProperty: "rating" },
+    { name: "Price ↓", sortProperty: "price" },
+    { name: "Price ↑", sortProperty: "-price" },
+    { name: "A-z", sortProperty: "title" },
+    { name: "Z-a", sortProperty: "-title" },
+  ];
+  const sortDisplay = activeSort.name;
 
   return (
     <section className="sortbar">
@@ -46,15 +47,15 @@ const SortBar = () => {
           </div>
           {openSort && (
             <ul ref={refSortWindow} className="sorting-select">
-              {sortVariant.map((val, i) => (
+              {sortVariant.map((obj, i) => (
                 <li
                   key={i}
-                  onClick={handleClickSort(i)}
+                  onClick={handleClickSort(obj)}
                   className={`sorting-select__item ${
-                    activeSort === i ? "sort-active" : ""
+                    sortDisplay === obj.name ? "sort-active" : ""
                   }`}
                 >
-                  <span>{val}</span>
+                  <span>{obj.name}</span>
                 </li>
               ))}
             </ul>

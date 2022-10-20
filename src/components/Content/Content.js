@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "../Card/Card";
+import AppContext from "../context";
 import CardLoader from "./CardLoader";
 
 import "./content.scss";
@@ -58,7 +59,8 @@ import "./content.scss";
 //   },
 // ];
 
-const Content = ({ cards, loading }) => {
+const Content = () => {
+  const {cards, loading} = useContext(AppContext);
   return (
     <section className="content">
       <h1 className="content-title">All dishes</h1>

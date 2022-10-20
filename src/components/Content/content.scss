@@ -4,13 +4,13 @@
   padding: rem(20) 0;
   background-color: $color-0;
   color: $secondColor;
+  min-height: 100vh;
 }
 .content-title {
   padding-left: rem(20);
   padding-bottom: rem(20);
   font-size: rem(40);
   color: $secondColor;
-  // color: #808080
   cursor: default;
 }
 .content-box {
@@ -19,7 +19,7 @@
 .content-box__items {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   gap: rem(20);
   & > * {
     flex: 1 1 20%;
