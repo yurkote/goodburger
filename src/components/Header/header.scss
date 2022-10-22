@@ -46,6 +46,7 @@
 .header-item__input {
   background-color: #fff;
   border-radius: 10px;
+  position: relative;
 }
 .header-input {
   border-radius: 10px;
@@ -59,6 +60,7 @@
     rgba(255, 255, 0, 1) 50%,
     rgba(155, 155, 0, 1) 100%
   );
+  font-size: rem(20);
   &:hover {
     background: none;
     background-color: rgba($color-3, 0.5);
@@ -66,6 +68,19 @@
   &:focus {
     background: none;
     background-color: $color-3;
+  }
+}
+.header-input__icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  transition: all 0.4 ease;
+  svg {
+    path {
+      fill: #464646;
+    }
   }
 }
 .header-item__cart {

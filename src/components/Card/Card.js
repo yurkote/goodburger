@@ -23,7 +23,7 @@ import "./card.scss";
 //   },
 // ];
 
-const Card = ({ id, title, imageUrl, price, weight, calories, addons }) => {
+const Card = ({ id, title, imageUrl, price, weight, calories, addons, vege }) => {
   const refAddOn = useRef([]);
 
   const handleClickAddOn = (idx) => (e) => {
@@ -32,6 +32,7 @@ const Card = ({ id, title, imageUrl, price, weight, calories, addons }) => {
   return (
     <div className="card">
       <div className="card-img">
+        {vege && <div className="card-vege"><span>vege</span></div>}
         <Link to={`/product/${id}`}>
           <img src={imageUrl} alt="dish" className="image-card" />
           <div className="card-info info">

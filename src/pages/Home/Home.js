@@ -6,7 +6,7 @@ import SortBar from "../../components/SortBar/SortBar";
 const Home = () => {
   return (
     <>
-      <Header search />
+      <Header search cartBtn />
       <SortBar />
       <Content />
     </>

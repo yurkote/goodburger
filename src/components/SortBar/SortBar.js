@@ -11,14 +11,14 @@ const SortBar = () => {
     useContext(AppContext);
   useOnClickOutside(refSortWindow, () => setOpenSort(false));
 
-  const typesDish = ["All", "Burgers", "Drinks"];
+  const typesDish = ["All", "Vege", "Chiken", "Beef", "Seafood", "Pork"];
   const sortVariant = [
     { name: "Relevant", sortProperty: "weight" },
     { name: "Rating", sortProperty: "rating" },
     { name: "Price ↓", sortProperty: "price" },
     { name: "Price ↑", sortProperty: "-price" },
-    { name: "A-z", sortProperty: "title" },
-    { name: "Z-a", sortProperty: "-title" },
+    { name: "A-z", sortProperty: "-title" },
+    { name: "Z-a", sortProperty: "title" },
   ];
   const sortDisplay = activeSort.name;
 
