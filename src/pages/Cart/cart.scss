@@ -30,8 +30,6 @@
 }
 .cart-clear {
   flex: 0 1 250px;
-  border: 3px solid $color-4;
-  border-radius: 30px;
 }
 .cart-clear__button {
   width: 100%;
@@ -41,11 +39,38 @@
   font-size: rem(20);
   gap: rem(5);
   padding: rem(15) rem(5);
+  border-radius: 30px;
+  border: 3px solid $color-3;
+  transition: all 0.4s ease;
+  &:hover {
+    border-color: $color-3;
+    background-color: $color-3;
+    color: $color-0;
+    svg {
+      path {
+        stroke: $color-0;
+      }
+    }
+  }
+  &:active {
+    border-color: $color-2;
+    background-color: $color-2;
+  }
 }
 .cart-content {
   display: flex;
   flex-direction: column;
   gap: rem(20);
+}
+.empty-cart {
+  height: 80vh;
+  margin: 0 auto;
+  max-width: 200px;
+  display: flex;
+  align-items: center;
+  img {
+    max-width: 100%;
+  }
 }
 .cart-item {
   padding: rem(20) 0;
@@ -115,10 +140,28 @@
 .cart-item__count-minus {
   width: 50px;
   height: 50px;
-  background-color: $color-1;
+  background-color: $color-3;
   border-radius: 50%;
   color: $color-0;
   line-height: 1.15px;
+  transition: all 0.3s ease;
+  &:disabled {
+    background-color: $color-1;
+    cursor: not-allowed;
+    &:hover {
+      background-color: $color-1;
+      border-color: $color-1;
+    }
+  }
+  &:hover {
+    border-color: $color-2;
+    background-color: $color-2;
+    color: $color-0;
+  }
+  &:active {
+    border-color: $color-1;
+    background-color: $color-1;
+  }
   @media screen and (max-width: $mobile) {
     width: 35px;
     height: 35px;
@@ -140,6 +183,24 @@
   align-items: center;
   justify-content: center;
   padding-bottom: rem(7);
+  transition: all 0.3s ease;
+  &:disabled {
+    background-color: $color-1;
+    cursor: not-allowed;
+    &:hover {
+      background-color: $color-1;
+      border-color: $color-1;
+    }
+  }
+  &:hover {
+    border-color: $color-2;
+    background-color: $color-2;
+    color: $color-0;
+  }
+  &:active {
+    border-color: $color-1;
+    background-color: $color-1;
+  }
   @media screen and (max-width: $mobile) {
     width: 35px;
     height: 35px;
@@ -168,9 +229,22 @@
   font-weight: 600;
   font-size: rem(20);
   padding: rem(10);
-  color: $color-0;
-  background-color: $color-3;
+  border: 3px solid $color-3;
+  background-color: transparent;
   border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    border-color: $color-3;
+    background-color: $color-3;
+    color: $color-0;
+  }
+  &:active {
+    border-color: $color-2;
+    background-color: $color-2;
+  }
   @media screen and (max-width: $mobile) {
     font-size: rem(14);
     border-radius: 20px;
@@ -228,6 +302,16 @@
   padding: rem(20);
   border-radius: 35px;
   font-size: rem(20);
+  transition: all 0.4s ease;
+  &:hover {
+    border-color: $color-3;
+    background-color: $color-3;
+    color: $color-0;
+  }
+  &:active {
+    border-color: $color-2;
+    background-color: $color-2;
+  }
   @media screen and (max-width: $mobileSmall) {
     display: none;
   }
@@ -239,8 +323,17 @@
   font-size: rem(20);
   padding: rem(20);
   border-radius: 35px;
+  border: 1px solid $color-4;
+  transition: all 0.4s ease;
+  &:hover {
+    border-color: $color-2;
+    background-color: $color-2;
+  }
+  &:active {
+    background-color: $color-1;
+    border-color: $color-1;
+  }
   @media screen and (max-width: $mobileSmall) {
-
     flex: 0 1 70%;
   }
 }

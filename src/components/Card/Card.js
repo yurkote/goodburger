@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
+import AppContext from "../context";
 
 import "./card.scss";
 
@@ -23,17 +24,24 @@ import "./card.scss";
 //   },
 // ];
 
-const Card = ({ id, title, imageUrl, price, weight, calories, addons, vege }) => {
+const Card = ({ id, title, ingredients, imageUrl, price, weight, calories, addons, vege }) => {
   const refAddOn = useRef([]);
+  const {setProductObj} = useContext(AppContext);
 
   const handleClickAddOn = (idx) => (e) => {
     refAddOn.current[idx].classList.toggle("addon-active");
+  };
+
+  // temporary for product page
+  const clickImageHandler = () => {
+    const obj = {id, title, ingredients, imageUrl, price, weight, calories, addons, vege };
+    setProductObj(obj);
   };
   return (
     <div className="card">
       <div className="card-img">
         {vege && <div className="card-vege"><span>vege</span></div>}
-        <Link to={`/product/${id}`}>
+        <Link onClick={clickImageHandler} to={`/product/${id}`}>
           <img src={imageUrl} alt="dish" className="image-card" />
           <div className="card-info info">
             <span className="info-kkal">~{calories}Kcal</span>
@@ -56,7 +64,7 @@ const Card = ({ id, title, imageUrl, price, weight, calories, addons, vege }) =>
                 key={item.title}
               >
                 <span>{`${item.title}`}</span>
-                <span>${item.priceAddon}</span>
+                <span>${item.priceAddon.toFixed(2)}</span>
               </li>
             );
           })}

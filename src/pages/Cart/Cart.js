@@ -1,5 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
+
+import emptyImg from "../../assets/img/empty-cart-img.png"
 
 import "./cart.scss";
 
@@ -53,30 +56,30 @@ const Cart = () => {
                 <path
                   d="M2.5 5H4.16667H17.5"
                   stroke="#B6B6B6"
-                  stroke-width="1.2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
                 <path
                   d="M6.66663 5.00001V3.33334C6.66663 2.89131 6.84222 2.46739 7.15478 2.15483C7.46734 1.84227 7.89127 1.66667 8.33329 1.66667H11.6666C12.1087 1.66667 12.5326 1.84227 12.8451 2.15483C13.1577 2.46739 13.3333 2.89131 13.3333 3.33334V5.00001M15.8333 5.00001V16.6667C15.8333 17.1087 15.6577 17.5326 15.3451 17.8452C15.0326 18.1577 14.6087 18.3333 14.1666 18.3333H5.83329C5.39127 18.3333 4.96734 18.1577 4.65478 17.8452C4.34222 17.5326 4.16663 17.1087 4.16663 16.6667V5.00001H15.8333Z"
                   stroke="#B6B6B6"
-                  stroke-width="1.2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
                 <path
                   d="M8.33337 9.16667V14.1667"
                   stroke="#B6B6B6"
-                  stroke-width="1.2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
                 <path
                   d="M11.6666 9.16667V14.1667"
                   stroke="#B6B6B6"
-                  stroke-width="1.2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 ></path>
               </svg>
               <span>Clear cart</span>
@@ -84,49 +87,21 @@ const Cart = () => {
           </div>
         </div>
         <div className="cart-content">
+          {/* <div className="empty-cart">
+            <img src={emptyImg} alt="empty" />
+          </div> */}
           <div className="cart-content__item cart-item">
             <div className="cart-tem__left">
-              <div className="cart-item__img">
-                <img
-                  src="https://thumb.tildacdn.com/tild3734-6538-4639-b737-653764666439/-/cover/760x502/center/center/-/format/webp/Muchroom_burger.jpg"
-                  alt="product"
-                />
-              </div>
+              {/* link to product*/}
+                <Link to={"/product/:id"} className="cart-item__img">
+                  <img
+                    src="https://thumb.tildacdn.com/tild3734-6538-4639-b737-653764666439/-/cover/760x502/center/center/-/format/webp/Muchroom_burger.jpg"
+                    alt="product"
+                  />
+                </Link>
               <div className="cart-item__info">
                 <h3 className="cart-item__info-title">Name burger</h3>
-                <p className="cart-item__info-addons">
-                  with: Onion, ....
-                </p>
-              </div>
-            </div>
-            <div className="cart-item__content">
-              <div className="cart-item__count">
-                <button className="cart-item__count-minus">—</button>
-                <span className="cart-item__coun-num">123</span>
-                <button className="cart-item__count-plus">+</button>
-              </div>
-              <div className="cart-item__price">
-                <span>$342</span>
-              </div>
-              <div className="cart-item__button">
-                <button className="cart-item__button-remove">X</button>
-              </div>
-            </div>
-          </div>
-          <div className="cart-content__item cart-item">
-            <div className="cart-tem__left">
-              <div className="cart-item__img">
-                <img
-                  src="https://thumb.tildacdn.com/tild3734-6538-4639-b737-653764666439/-/cover/760x502/center/center/-/format/webp/Muchroom_burger.jpg"
-                  alt="product"
-                />
-              </div>
-              <div className="cart-item__info">
-                <h3 className="cart-item__info-title">Name burger</h3>
-                <p className="cart-item__info-addons">
-                  with: Onion, Lorem ipsum dolor sit amet consectetur
-                  adipisicing elit.
-                </p>
+                <p className="cart-item__info-addons">with: Onion, ....</p>
               </div>
             </div>
             <div className="cart-item__content">
@@ -154,7 +129,9 @@ const Cart = () => {
             </p>
           </div>
           <div className="cart-footer__actions cart-actions">
-            <button className="cart-actions__back"> Back </button>
+            <Link to={"/"} href="/">
+              <button className="cart-actions__back"> Back </button>
+            </Link>
             <button className="cart-actions__checkout">Checkout</button>
           </div>
         </div>

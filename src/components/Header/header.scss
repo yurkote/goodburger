@@ -82,6 +82,9 @@
       fill: #464646;
     }
   }
+  &--cursor-pointer {
+    cursor: pointer;
+  }
 }
 .header-item__cart {
   height: rem(50);

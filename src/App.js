@@ -12,6 +12,8 @@ import "./app.scss";
 // TODO: верстка сторінки продукта, корзини, помилок
 
 const App = () => {
+  // temporary id for product page
+  const [productObj, setProductObj] = useState({});
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
@@ -35,7 +37,7 @@ const App = () => {
     const sortBy = activeSort.sortProperty.replace("-", "");
     const order = activeSort.sortProperty.includes("-") ? "asc" : "desc";
     const category = activeType > 0 ? `category=${activeType}` : "";
-    const search = searchValue ? `&filter=${searchValue}` : "";
+    const search = searchValue ? `&title=${searchValue}` : "";
     async function fetchData() {
       try {
         axios(
@@ -60,6 +62,7 @@ const App = () => {
           activeType,
           activeSort,
           searchValue,
+          setProductObj,
           setActiveType,
           setSearchValue,
           handleClickType,
@@ -69,8 +72,11 @@ const App = () => {
         <div className="wrapper wrapper__container">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="product/:id" element={<Product />} />
-            <Route path="cart" element={<Cart />} />
+            <Route
+              path="/product/:id"
+              element={<Product productObj={productObj} />}
+            />
+            <Route path="/cart" element={<Cart />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </div>

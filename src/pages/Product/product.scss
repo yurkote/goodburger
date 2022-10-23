@@ -1,0 +1,117 @@
+@import "../../scss/variables";
+
+.product {
+  color: $secondColor;
+  padding: rem(20) 0;
+  display: flex;
+  justify-content: center;
+  gap: rem(10);
+  flex-wrap: wrap;
+}
+.product__img {
+  position: relative;
+  justify-self: stretch;
+  flex: 1 1 300px;
+  img {
+    width: 100%;
+  }
+}
+.product-vege {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 60px;
+  height: 60px;
+  background-color: $color-0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: greenyellow;
+}
+.prd-cnt {
+  flex: 1 1 400px;
+}
+.prd-cnt__title {
+  display: flex;
+  gap: rem(10);
+  justify-content: space-between;
+  align-items: center;
+  font-size: rem(30);
+  padding-bottom: rem(30);
+  flex-wrap: wrap;
+  text-transform: capitalize;
+}
+.prd-cnt__back-button {
+  font-size: rem(20);
+  border: 3px solid $color-4;
+  border-radius: 30px;
+  padding: rem(10);
+  font-weight: 200;
+  margin-left: auto;
+  &:hover {
+    color: $color-0;
+    background-color: $color-3;
+  }
+  &:active {
+    background-color: $color-2;
+    border-color: $color-2;
+  }
+  &--link {
+    margin-left: auto;
+  }
+}
+.prd-cnt__descr {
+  font-size: rem(20);
+  padding-bottom: rem(10);
+  border-bottom: 1px solid $color-3;
+  p {
+    display: flex;
+    gap: rem(10);
+    padding-bottom: rem(10);
+    font-weight: 300;
+    span {
+      font-weight: 400;
+      flex: 0 0 15%;
+      color: $color-3;
+    }
+  }
+}
+.prd-addons {
+  border-bottom: 1px solid $color-3;
+}
+.prd-addons__title {
+  color: $color-3;
+  font-size: rem(20);
+  padding: rem(10) 0;
+}
+.prd-addons__items {
+  font-size: rem(16);
+}
+.prd-addons__item {
+  display: flex;
+  align-items: center;
+  gap: rem(10);
+  padding-bottom: rem(10);
+  h3 {
+    flex: 0 1 40%;
+  }
+  p {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.prd-footer {
+  padding: rem(20) 0;
+}
+.prd-footer__price {
+  display: flex;
+  justify-content: center;
+  text-transform: capitalize;
+  gap: rem(10);
+  font-size: rem(20);
+  span {
+    color: $color-3;
+  }
+}
