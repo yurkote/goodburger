@@ -1,14 +1,16 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
-import AppContext from "../context";
+import { setActiveType, setActiveSort } from "../../redux/slices/sortSlice";
 
 import "./sortbar.scss";
 
 const SortBar = () => {
   const [openSort, setOpenSort] = useState(false);
   const refSortWindow = useRef();
-  const { activeType, activeSort, handleClickType, handleClickSort } =
-    useContext(AppContext);
+  const { activeType, activeSort } = useSelector((state) => state.sort);
+  const dispatch = useDispatch();
+
   useOnClickOutside(refSortWindow, () => setOpenSort(false));
 
   const typesDish = ["All", "Vege", "Chiken", "Beef", "Seafood", "Pork"];
@@ -22,6 +24,14 @@ const SortBar = () => {
   ];
   const sortDisplay = activeSort.name;
 
+  const handleClickType = (index) => (e) => {
+    dispatch(setActiveType(index));
+  };
+
+  const handleClickSort = (obj) => (e) => {
+    dispatch(setActiveSort(obj));
+  };
+
   return (
     <section className="sortbar">
       <div className="sortbar-items">
@@ -29,7 +39,7 @@ const SortBar = () => {
           {typesDish.map((item, i) => (
             <li
               key={i}
-              onClick={() => handleClickType(i)}
+              onClick={handleClickType(i)}
               className={`sortbar-list__button ${
                 activeType === i ? "sortbar-active" : ""
               }`}

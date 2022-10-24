@@ -4,26 +4,6 @@ import AppContext from "../context";
 
 import "./card.scss";
 
-// const data = [
-//   {
-//     id: 0,
-//     title: "Shrimp Burger",
-//     imageUrl:
-//       "https://static.tildacdn.com/tild6463-3163-4136-b736-356661313338/shrimp_burger.png",
-//     price: 5.42,
-//     weight: 300,
-//     calories: 400,
-//     addons: [
-//       { title: "Marinated onion", weightAddon: "10gr", priceAddon: "0.10" },
-//       { title: "Sriracha (spicy)", weightAddon: "20gr", priceAddon: "0.30" },
-//       { title: "Dorblu cheese", weightAddon: "25gr", priceAddon: "0.60" },
-//       { title: "Fried egg", weightAddon: "40gr", priceAddon: "0.50" },
-//     ],
-//     category: 0,
-//     rating: 4,
-//   },
-// ];
-
 const Card = ({ id, title, ingredients, imageUrl, price, weight, calories, addons, vege }) => {
   const refAddOn = useRef([]);
   const {setProductObj} = useContext(AppContext);
@@ -68,11 +48,6 @@ const Card = ({ id, title, ingredients, imageUrl, price, weight, calories, addon
               </li>
             );
           })}
-          {/* test active addOn - below */}
-          {/* <li className="addons-item addon-active">
-            <span>It is should be active addon</span>
-            <span>$666</span>
-          </li> */}
         </ul>
       </div>
       <div className="card-footer">

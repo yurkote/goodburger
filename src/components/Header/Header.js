@@ -1,17 +1,20 @@
 import React, { useContext } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { setActiveType } from "../../redux/slices/sortSlice";
 
 import logo from "../../assets/img/logo.png";
 import AppContext from "../context";
 import "./header.scss";
 
 const Header = ({ search, cartBtn }) => {
-  const { searchValue, setSearchValue, setActiveType } = useContext(AppContext);
+  const { searchValue, setSearchValue} = useContext(AppContext);
+  const dispatch = useDispatch();
 
   // must be setActiveType(0) because mockApi
   // don't works with few filters
   const onChangeHandler = (e) => (
-    setActiveType(0), setSearchValue(e.target.value)
+    dispatch(setActiveType(0)), setSearchValue(e.target.value)
   );
 
   return (

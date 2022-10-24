@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
 
-import emptyImg from "../../assets/img/empty-cart-img.png"
-
+import emptyImg from "../../assets/img/empty-cart-img.png";
 import "./cart.scss";
 
 const Cart = () => {
+
   return (
     <>
       <Header />
@@ -93,12 +93,12 @@ const Cart = () => {
           <div className="cart-content__item cart-item">
             <div className="cart-tem__left">
               {/* link to product*/}
-                <Link to={"/product/:id"} className="cart-item__img">
-                  <img
-                    src="https://thumb.tildacdn.com/tild3734-6538-4639-b737-653764666439/-/cover/760x502/center/center/-/format/webp/Muchroom_burger.jpg"
-                    alt="product"
-                  />
-                </Link>
+              <Link to={"/product/:id"} className="cart-item__img">
+                <img
+                  src="https://thumb.tildacdn.com/tild3734-6538-4639-b737-653764666439/-/cover/760x502/center/center/-/format/webp/Muchroom_burger.jpg"
+                  alt="product"
+                />
+              </Link>
               <div className="cart-item__info">
                 <h3 className="cart-item__info-title">Name burger</h3>
                 <p className="cart-item__info-addons">with: Onion, ....</p>
@@ -106,9 +106,18 @@ const Cart = () => {
             </div>
             <div className="cart-item__content">
               <div className="cart-item__count">
-                <button className="cart-item__count-minus">—</button>
+                <button
+                  // disabled={count === 1 ? true : false}
+                  className="cart-item__count-minus"
+                >
+                  —
+                </button>
                 <span className="cart-item__coun-num">123</span>
-                <button className="cart-item__count-plus">+</button>
+                <button
+                  className="cart-item__count-plus"
+                >
+                  +
+                </button>
               </div>
               <div className="cart-item__price">
                 <span>$342</span>
@@ -122,10 +131,10 @@ const Cart = () => {
         <div className="cart-footer">
           <div className="cart-footer__info">
             <p className="cart-footer__all-products">
-              All products: <span>4 pcs</span>
+              All products: <span>123 pcs</span>
             </p>
             <p className="cart-footer__all-price">
-              Your order price: <span>$28345</span>{" "}
+              Your order price: <span>$28345</span>
             </p>
           </div>
           <div className="cart-footer__actions cart-actions">

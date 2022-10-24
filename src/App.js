@@ -7,9 +7,7 @@ import Product from "./pages/Product/Product";
 import { Route, Routes } from "react-router-dom";
 import ErrorPage from "./pages/Error";
 import "./app.scss";
-
-// TODO: json data (drinks, salats. sets...)
-// TODO: верстка сторінки продукта, корзини, помилок
+import { useSelector } from "react-redux";
 
 const App = () => {
   // temporary id for product page
@@ -17,19 +15,7 @@ const App = () => {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
-  const [activeType, setActiveType] = useState(0);
-  const [activeSort, setActiveSort] = useState({
-    name: "Rating",
-    sortProperty: "rating",
-  });
-
-  const handleClickType = (typeDishIndex) => {
-    typeDishIndex === activeType
-      ? setActiveType(0)
-      : setActiveType(typeDishIndex);
-  };
-
-  const handleClickSort = (typeSort) => (e) => setActiveSort(typeSort);
+  const { activeType, activeSort } = useSelector((state) => state.sort);
 
   useEffect(() => {
     setLoading(true);
@@ -59,14 +45,9 @@ const App = () => {
         value={{
           cards,
           loading,
-          activeType,
-          activeSort,
           searchValue,
           setProductObj,
-          setActiveType,
           setSearchValue,
-          handleClickType,
-          handleClickSort,
         }}
       >
         <div className="wrapper wrapper__container">
