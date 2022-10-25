@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Card from "../Card/Card";
 import AppContext from "../context";
+import Pagination from "../Pagination/Pagination";
 import CardLoader from "./CardLoader";
 
 import "./content.scss";
@@ -17,26 +18,7 @@ const Content = () => {
             : cards.map((item) => <Card key={item.id} {...item} />)}
         </div>
       </div>
-      {/* pagination component */}
-      <div className="pagination">
-        <ul className="pagination-items">
-          <li className="pagination-nav__prev pagination__button ">
-            <span>Prev</span>
-          </li>
-          <li className="pagination__button current-page">
-            <span>1</span>
-          </li>
-          <li className="pagination__button">
-            <span>2</span>
-          </li>
-          <li className="pagination__button">
-            <span>3</span>
-          </li>
-          <li className="pagination-nav__next pagination__button">
-            <span>Next</span>
-          </li>
-        </ul>
-      </div>
+      <Pagination />
     </section>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { setActiveType } from "../../redux/slices/sortSlice";
@@ -8,14 +8,16 @@ import AppContext from "../context";
 import "./header.scss";
 
 const Header = ({ search, cartBtn }) => {
-  const { searchValue, setSearchValue} = useContext(AppContext);
+  const { searchValue, setSearchValue } = useContext(AppContext);
   const dispatch = useDispatch();
+  const searchInput = useRef();
 
   // must be setActiveType(0) because mockApi
   // don't works with few filters
   const onChangeHandler = (e) => (
     dispatch(setActiveType(0)), setSearchValue(e.target.value)
   );
+  const clearInput = () => (setSearchValue(""), searchInput.current.focus());
 
   return (
     <header className="header">
@@ -32,7 +34,7 @@ const Header = ({ search, cartBtn }) => {
             <div className="header-item__input">
               {searchValue ? (
                 <div
-                  onClick={() => setSearchValue("")}
+                  onClick={clearInput}
                   className="header-input__icon header-input__icon--cursor-pointer"
                 >
                   <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -52,6 +54,7 @@ const Header = ({ search, cartBtn }) => {
               )}
 
               <input
+                ref={searchInput}
                 value={searchValue}
                 onChange={onChangeHandler}
                 type="text"

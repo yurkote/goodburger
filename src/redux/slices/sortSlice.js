@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   activeType: 0,
+  activePage: 1,
   activeSort: {
     name: "Rating",
     sortProperty: "rating",
@@ -20,11 +21,13 @@ export const sortSlice = createSlice({
     setActiveSort: (state, action) => {
       state.activeSort = action.payload;
     },
+    setActivePage: (state, action) => {
+      state.activePage = action.payload;
+    }
   },
 });
 
-console.log(sortSlice);
 // Action creators are generated for each case reducer function
-export const { setActiveType, setActiveSort } = sortSlice.actions;
+export const { setActiveType, setActiveSort, setActivePage } = sortSlice.actions;
 
 export default sortSlice.reducer;

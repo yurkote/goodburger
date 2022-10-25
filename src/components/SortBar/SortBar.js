@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
-import { setActiveType, setActiveSort } from "../../redux/slices/sortSlice";
+import { setActiveType, setActiveSort, setActivePage } from "../../redux/slices/sortSlice";
 
 import "./sortbar.scss";
 
@@ -26,6 +26,7 @@ const SortBar = () => {
 
   const handleClickType = (index) => (e) => {
     dispatch(setActiveType(index));
+    dispatch(setActivePage(1));
   };
 
   const handleClickSort = (obj) => (e) => {
