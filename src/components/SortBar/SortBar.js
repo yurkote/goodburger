@@ -5,6 +5,14 @@ import { setActiveType, setActiveSort, setActivePage } from "../../redux/slices/
 
 import "./sortbar.scss";
 
+export const sortVariant = [
+  { name: "Relevant", sortProperty: "weight" },
+  { name: "Rating", sortProperty: "rating" },
+  { name: "Price ↓", sortProperty: "price" },
+  { name: "Price ↑", sortProperty: "-price" },
+  { name: "A-z", sortProperty: "-title" },
+  { name: "Z-a", sortProperty: "title" },
+];
 const SortBar = () => {
   const [openSort, setOpenSort] = useState(false);
   const refSortWindow = useRef();
@@ -14,14 +22,6 @@ const SortBar = () => {
   useOnClickOutside(refSortWindow, () => setOpenSort(false));
 
   const typesDish = ["All", "Vege", "Chiken", "Beef", "Seafood", "Pork"];
-  const sortVariant = [
-    { name: "Relevant", sortProperty: "weight" },
-    { name: "Rating", sortProperty: "rating" },
-    { name: "Price ↓", sortProperty: "price" },
-    { name: "Price ↑", sortProperty: "-price" },
-    { name: "A-z", sortProperty: "-title" },
-    { name: "Z-a", sortProperty: "title" },
-  ];
   const sortDisplay = activeSort.name;
 
   const handleClickType = (index) => (e) => {

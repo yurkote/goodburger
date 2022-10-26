@@ -1,23 +1,24 @@
-import React, { useContext, useRef } from "react";
-import { useDispatch } from "react-redux";
+import React, { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { setActiveType } from "../../redux/slices/sortSlice";
+import { setActiveType, setSearchValue } from "../../redux/slices/sortSlice";
 
 import logo from "../../assets/img/logo.png";
-import AppContext from "../context";
 import "./header.scss";
 
 const Header = ({ search, cartBtn }) => {
-  const { searchValue, setSearchValue } = useContext(AppContext);
+  const searchValue = useSelector((state) => state.sort.inputValue);
   const dispatch = useDispatch();
   const searchInput = useRef();
 
   // must be setActiveType(0) because mockApi
   // don't works with few filters
   const onChangeHandler = (e) => (
-    dispatch(setActiveType(0)), setSearchValue(e.target.value)
+    dispatch(setActiveType(0)), dispatch(setSearchValue(e.target.value))
   );
-  const clearInput = () => (setSearchValue(""), searchInput.current.focus());
+  const clearInput = () => (
+    dispatch(setSearchValue("")), searchInput.current.focus()
+  );
 
   return (
     <header className="header">
