@@ -1,31 +1,98 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AppContext from "../context";
+import { addToCart, addToCartTest } from "../../redux/slices/cartSlice";
 
 import "./card.scss";
 
-const Card = ({ id, title, ingredients, imageUrl, price, weight, calories, addons, vege }) => {
+const Card = ({
+  id,
+  title,
+  ingredients,
+  imageUrl,
+  price,
+  weight,
+  calories,
+  addons,
+  vege,
+}) => {
+  const { setProductObj } = useContext(AppContext);
+  const [addedAddons, setAddedAddons] = useState([]);
+  const [displayedPrice, setDisplayedPrice] = useState(price);
+  const [weightProd, setWeightProd] = useState(weight);
+  const refAddBtn = useRef();
   const refAddOn = useRef([]);
-  const {setProductObj} = useContext(AppContext);
+  const dispatch = useDispatch();
+  const items = useSelector(_ => _.cart.items);
+  console.log("all items in state ", items);
 
-  const handleClickAddOn = (idx) => (e) => {
-    refAddOn.current[idx].classList.toggle("addon-active");
+  const handleClickAddOn = (obj, idx) => (e) => {
+    const ref = refAddOn.current[idx];
+    if (!ref.classList.contains("addon-active")) {
+      ref.classList.add("addon-active");
+      setAddedAddons((prev) => [...prev, obj]);
+      setDisplayedPrice(displayedPrice + obj.priceAddon);
+      setWeightProd(weightProd + obj.weightAddon);
+    } else {
+      setAddedAddons((prev) => prev.filter((el) => el.title !== obj.title));
+      setDisplayedPrice(displayedPrice - obj.priceAddon);
+      setWeightProd(weightProd - obj.weightAddon);
+      ref.classList.remove("addon-active");
+    }
   };
-
+  const addToCartHandler = (e) => {
+    const addedList = refAddOn.current.filter(
+      (item) => item.classList.contains("addon-active") === true
+    );
+    const obj = {
+      id,
+      title,
+      ingredients,
+      imageUrl,
+      price: displayedPrice,
+      addons: addedAddons,
+    };
+    const btn = refAddBtn.current;
+    btn.classList.add("card-button__added");
+    addedList.forEach((item) => item.classList.remove("addon-active"));
+    setDisplayedPrice(price);
+    setWeightProd(weight);
+    dispatch(addToCartTest(obj));
+    const anim = btn.animate([], { duration: 1000 });
+    anim.addEventListener("finish", function () {
+      btn.classList.remove("card-button__added");
+      setAddedAddons([]);
+    });
+  };
   // temporary for product page
   const clickImageHandler = () => {
-    const obj = {id, title, ingredients, imageUrl, price, weight, calories, addons, vege };
+    const obj = {
+      id,
+      title,
+      ingredients,
+      imageUrl,
+      price,
+      weight,
+      calories,
+      addons,
+      vege,
+    };
     setProductObj(obj);
   };
   return (
     <div className="card">
       <div className="card-img">
-        {vege && <div className="card-vege"><span>vege</span></div>}
+        {vege && (
+          <div className="card-vege">
+            <span>vege</span>
+          </div>
+        )}
         <Link onClick={clickImageHandler} to={`/product/${id}`}>
           <img src={imageUrl} alt="dish" className="image-card" />
           <div className="card-info info">
             <span className="info-kkal">~{calories}Kcal</span>
-            <span className="info-weight">{weight}g</span>
+            <span className="info-weight">{weightProd}g</span>
           </div>
         </Link>
       </div>
@@ -39,7 +106,10 @@ const Card = ({ id, title, ingredients, imageUrl, price, weight, calories, addon
             return (
               <li
                 ref={(el) => (refAddOn.current[i] = el)}
-                onClick={handleClickAddOn(i)}
+                data-title={item.title}
+                data-price={item.priceAddon}
+                data-weight={item.weightAddon}
+                onClick={handleClickAddOn(item, i)}
                 className="addons-item"
                 key={item.title}
               >
@@ -52,10 +122,14 @@ const Card = ({ id, title, ingredients, imageUrl, price, weight, calories, addon
       </div>
       <div className="card-footer">
         <div className="card-price">
-          <span>${price}</span>
+          <span>${displayedPrice.toFixed(2)}</span>
         </div>
         <div className="card-button-box">
-          <button className="card-button">
+          <button
+            ref={refAddBtn}
+            onClick={addToCartHandler}
+            className="card-button"
+          >
             <span>Add to cart</span>
             {/* <span className="card-button__counter">10</span> */}
           </button>

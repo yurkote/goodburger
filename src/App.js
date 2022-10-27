@@ -12,6 +12,8 @@ import { useDebounce } from "use-lodash-debounce";
 import { sortVariant } from "./components/SortBar/SortBar";
 import { setParamsToState } from "./redux/slices/sortSlice";
 
+const dataUrl = process.env.REACT_APP_mockapi;
+
 const App = () => {
   // temporary id for product page
   const [productObj, setProductObj] = useState({});
@@ -39,8 +41,8 @@ const App = () => {
 
   useEffect(() => {
     setLoading(true);
-    // if open page with start 'search' query 
-    // requests to the server sends twice 
+    // if open page with start 'search' query
+    // requests to the server sends twice
     // because debouncedSearchValue has delay
     if (firstRender.current) {
       const params = {
@@ -49,7 +51,6 @@ const App = () => {
         activePage,
         inputValue,
       };
-      console.log("inp ", inputValue);
       setSearchParams(params);
     }
     firstRender.current = true;
@@ -61,14 +62,14 @@ const App = () => {
 
     async function fetchData() {
       try {
-        axios(
-          `https://633770b95327df4c43d42ba8.mockapi.io/dishes?p=${activePage}&l=6&${category}&sortBy=${sortBy}&order=${order}${search}`
-        ).then((response) => {
-          setCards(response.data);
-          setLoading(false);
-        });
+        const res = await axios(
+          `${dataUrl}?p=${activePage}&l=6&${category}&sortBy=${sortBy}&order=${order}${search}`
+        );
+        setCards(res.data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     }
     if (!query.current) {

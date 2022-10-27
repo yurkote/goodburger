@@ -8,8 +8,11 @@ import "./header.scss";
 
 const Header = ({ search, cartBtn }) => {
   const searchValue = useSelector((state) => state.sort.inputValue);
+  const { items, totalPrice } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const searchInput = useRef();
+
+  const totalProducts = items.reduce((prev, curr) => prev + curr.count, 0);
 
   // must be setActiveType(0) because mockApi
   // don't works with few filters
@@ -69,8 +72,12 @@ const Header = ({ search, cartBtn }) => {
           <div className="header-box__item-cart header-item">
             <div className="header-item__cart">
               <Link to={`/cart`} href="/" className="header-cart-button">
-                <span className="cart-button__price">$500.00</span>
-                <span className="cart-button__badge">99</span>
+                {totalPrice > 0 && (
+                  <span className="cart-button__price">${totalPrice.toFixed(2)}</span>
+                )}
+                {items.length > 0 && (
+                  <span className="cart-button__badge">{totalProducts}</span>
+                )}
                 <svg
                   width="30"
                   height="30"

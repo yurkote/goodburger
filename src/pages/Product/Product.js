@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import "./product.scss";
 
 const Product = ({ productObj }) => {
+  
   return (
     <>
       <Header cartBtn />
