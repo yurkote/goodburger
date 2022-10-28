@@ -11,7 +11,6 @@ import { clearCart } from "../../redux/slices/cartSlice";
 const Cart = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
-  const total = useSelector((state) => state.cart.totalPrice);
   const totalProducts = items.reduce((prev, curr) => prev + curr.count, 0);
   const totalPrice = items.reduce(
     (prev, curr) => prev + curr.count * curr.price,
@@ -110,8 +109,8 @@ const Cart = () => {
               <img src={emptyImg} alt="empty" />
             </div>
           )}
-          {items.map((item) => (
-            <CartItem key={item.id} {...item} />
+          {items.map((item, i) => (
+            <CartItem key={i} {...item} />
           ))}
         </div>
         <div className="cart-footer">

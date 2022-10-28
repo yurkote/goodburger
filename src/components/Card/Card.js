@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AppContext from "../context";
-import { addToCart, addToCartTest } from "../../redux/slices/cartSlice";
+import { addToCart } from "../../redux/slices/cartSlice";
 
 import "./card.scss";
 
@@ -25,7 +25,6 @@ const Card = ({
   const refAddOn = useRef([]);
   const dispatch = useDispatch();
   const items = useSelector(_ => _.cart.items);
-  console.log("all items in state ", items);
 
   const handleClickAddOn = (obj, idx) => (e) => {
     const ref = refAddOn.current[idx];
@@ -58,7 +57,7 @@ const Card = ({
     addedList.forEach((item) => item.classList.remove("addon-active"));
     setDisplayedPrice(price);
     setWeightProd(weight);
-    dispatch(addToCartTest(obj));
+    dispatch(addToCart(obj));
     const anim = btn.animate([], { duration: 1000 });
     anim.addEventListener("finish", function () {
       btn.classList.remove("card-button__added");

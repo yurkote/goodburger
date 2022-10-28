@@ -5,16 +5,16 @@ import { addToCart, removeItem, minusItem } from "../../redux/slices/cartSlice";
 
 import "./cartitem.scss";
 
-const CartItem = ({ id, title, addons, imageUrl, count, price }) => {
+const CartItem = ({ id, title, addons, imageUrl, count, price, cartIndex }) => {
   const dispatch = useDispatch();
 
   const onClickRemove = () => {
     if (window.confirm("Remove item?")) {
-      dispatch(removeItem(id));
+      dispatch(removeItem(cartIndex));
     }
   };
-  const onClickMinus = () => dispatch(minusItem({ id, count }));
-  const onClickPlus = () => dispatch(addToCart({ id }));
+  const onClickMinus = () => dispatch(minusItem(cartIndex));
+  const onClickPlus = () => dispatch(addToCart({ id, addons }));
 
   return (
     <div className="cart-content__item cart-item">
