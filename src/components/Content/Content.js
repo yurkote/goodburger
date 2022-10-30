@@ -1,19 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import Card from "../Card/Card";
-import AppContext from "../context";
 import Pagination from "../Pagination/Pagination";
 import CardLoader from "./CardLoader";
 
 import "./content.scss";
 
 const Content = () => {
-  const { cards, loading } = useContext(AppContext);
+  const { cards, status } = useSelector((state) => state.products);
+
   return (
     <section className="content">
       <h1 className="content-title">All dishes</h1>
       <div className="content-box">
         <div className="content-box__items">
-          {loading
+          {status === "error" && (
+            <div>Error in getting products, please trying again</div>
+          )}
+          {status === "loading"
             ? [...new Array(6)].map((_, i) => <CardLoader key={i} />)
             : cards.map((item) => <Card key={item.id} {...item} />)}
         </div>

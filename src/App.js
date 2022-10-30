@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
 import AppContext from "./components/context";
 import Cart from "./pages/Cart/Cart";
 import Home from "./pages/Home/Home";
@@ -11,14 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useDebounce } from "use-lodash-debounce";
 import { sortVariant } from "./components/SortBar/SortBar";
 import { setParamsToState } from "./redux/slices/sortSlice";
-
-const dataUrl = process.env.REACT_APP_mockapi;
+import { fetchProducts } from "./redux/slices/productsSlice";
 
 const App = () => {
   // temporary id for product page
   const [productObj, setProductObj] = useState({});
-  const [cards, setCards] = useState([]);
-  const [loading, setLoading] = useState(true);
   const { activeType, activeSort, activePage, inputValue } = useSelector(
     (state) => state.sort
   );
@@ -40,7 +36,6 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    setLoading(true);
     // if open page with start 'search' query
     // requests to the server sends twice
     // because debouncedSearchValue has delay
@@ -60,20 +55,8 @@ const App = () => {
     const category = activeType > 0 ? `category=${activeType}` : "";
     const search = inputValue ? `&title=${inputValue}` : "";
 
-    async function fetchData() {
-      try {
-        const res = await axios(
-          `${dataUrl}?p=${activePage}&l=6&${category}&sortBy=${sortBy}&order=${order}${search}`
-        );
-        setCards(res.data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    }
     if (!query.current) {
-      fetchData();
+      dispatch(fetchProducts({ sortBy, order, category, search, activePage }));
     }
     query.current = false;
   }, [activeType, activeSort, debouncedSearchValue, activePage]);
@@ -82,8 +65,6 @@ const App = () => {
     <>
       <AppContext.Provider
         value={{
-          cards,
-          loading,
           setProductObj,
         }}
       >
