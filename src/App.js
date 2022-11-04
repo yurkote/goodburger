@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import AppContext from "./components/context";
+import React, { useEffect, useRef } from "react";
 import Cart from "./pages/Cart/Cart";
 import Home from "./pages/Home/Home";
 import Product from "./pages/Product/Product";
@@ -13,8 +12,6 @@ import { setParamsToState } from "./redux/slices/sortSlice";
 import { fetchProducts } from "./redux/slices/productsSlice";
 
 const App = () => {
-  // temporary id for product page
-  const [productObj, setProductObj] = useState({});
   const { activeType, activeSort, activePage, inputValue } = useSelector(
     (state) => state.sort
   );
@@ -63,23 +60,14 @@ const App = () => {
 
   return (
     <>
-      <AppContext.Provider
-        value={{
-          setProductObj,
-        }}
-      >
-        <div className="wrapper wrapper__container">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/product/:id"
-              element={<Product productObj={productObj} />}
-            />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
-        </div>
-      </AppContext.Provider>
+      <div className="wrapper wrapper__container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </div>
     </>
   );
 };

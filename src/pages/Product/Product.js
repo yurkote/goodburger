@@ -1,10 +1,34 @@
+import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header/Header";
+import { dataUrl } from "../../helpers/linkData";
 import "./product.scss";
 
-const Product = ({ productObj }) => {
-  
+const Product = () => {
+  const [product, setProduct] = useState();
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function productData() {
+      try {
+        const { data } = await axios(dataUrl + "/" + id);
+        setProduct(data);
+      } catch (error) {
+        alert("Something was wrong, you'll redirect to main page");
+        navigate("/");
+      }
+    }
+    productData();
+  }, []);
+
+  if (!product) {
+    return "is loading...";
+  }
+
   return (
     <>
       <Header cartBtn />
@@ -20,8 +44,8 @@ const Product = ({ productObj }) => {
       </svg> */}
       <section className="product">
         <div className="product__img">
-          <img src={productObj.imageUrl} alt="product" />
-          {productObj.vege && (
+          <img src={product.imageUrl} alt="product" />
+          {product.vege && (
             <div className="product-vege">
               <span>vege</span>
             </div>
@@ -29,7 +53,7 @@ const Product = ({ productObj }) => {
         </div>
         <div className="product__content prd-cnt">
           <div className="prd-cnt__title">
-            <h1>{productObj.title}</h1>
+            <h1>{product.title}</h1>
             <Link className="prd-cnt__back-button--link" to={"/"}>
               <button className="prd-cnt__back-button">
                 Back to main page
@@ -39,21 +63,21 @@ const Product = ({ productObj }) => {
           <div className="prd-cnt__descr">
             <p>
               <span>Ingredients: </span>
-              {productObj.ingredients}
+              {product.ingredients}
             </p>
             <p>
               <span>Energy: </span>
-              {productObj.calories}kcal
+              {product.calories}kcal
             </p>
             <p>
               <span>Weight: </span>
-              {productObj.weight}gr
+              {product.weight}gr
             </p>
           </div>
           <div className="prd-cnt__addons prd-addons">
             <p className="prd-addons__title">Available addons:</p>
             <ul className="prd-addons__items">
-              {productObj.addons.map((item, i) => {
+              {product.addons.map((item, i) => {
                 return (
                   <li key={i} className="prd-addons__item">
                     <h3>{item.title}</h3>
@@ -68,8 +92,8 @@ const Product = ({ productObj }) => {
           </div>
           <div className="prd-footer">
             <div className="prd-footer__price">
-              <p>{productObj.title} price:</p>
-              <span> ${productObj.price}</span>
+              <p>{product.title} price:</p>
+              <span> ${product.price}</span>
             </div>
           </div>
         </div>

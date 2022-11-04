@@ -1,7 +1,6 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import AppContext from "../context";
 import { addToCart } from "../../redux/slices/cartSlice";
 
 import "./card.scss";
@@ -17,7 +16,7 @@ const Card = ({
   addons,
   vege,
 }) => {
-  const { setProductObj } = useContext(AppContext);
+  // const { setProductObj } = useContext(AppContext);
   const [addedAddons, setAddedAddons] = useState([]);
   const [displayedPrice, setDisplayedPrice] = useState(price);
   const [weightProd, setWeightProd] = useState(weight);
@@ -77,7 +76,7 @@ const Card = ({
       addons,
       vege,
     };
-    setProductObj(obj);
+    // setProductObj(obj);
   };
   return (
     <div className="card">

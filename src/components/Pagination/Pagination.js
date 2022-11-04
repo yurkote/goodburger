@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AppContext from "../context";
 import { setActivePage } from "../../redux/slices/sortSlice";
 import "./pagination.scss";
 

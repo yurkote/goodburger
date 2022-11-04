@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
-const dataUrl = process.env.REACT_APP_mockapi;
+import { dataUrl } from "../../helpers/linkData";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProductsStatus",
