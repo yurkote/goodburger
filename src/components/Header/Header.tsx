@@ -1,26 +1,31 @@
-import React, { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { ChangeEvent, useRef } from "react";
 import { Link } from "react-router-dom";
 import { setActiveType, setSearchValue } from "../../redux/slices/sortSlice";
 
 import logo from "../../assets/img/logo.png";
 import "./header.scss";
+import { useAppDispatch, useAppSelector } from "../../helpers/hooks";
 
-const Header = ({ search, cartBtn }) => {
-  const searchValue = useSelector((state) => state.sort.inputValue);
-  const { items, totalPrice } = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
-  const searchInput = useRef();
+type HeaderProps = {
+  search?: boolean;
+  cartBtn?: boolean;
+};
+
+const Header: React.FC<HeaderProps> = ({ search, cartBtn }) => {
+  const searchValue = useAppSelector((state) => state.sort.inputValue);
+  const { items, totalPrice } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+  const searchInput = useRef<HTMLInputElement>(null);
 
   const totalProducts = items.reduce((prev, curr) => prev + curr.count, 0);
 
   // must be setActiveType(0) because mockApi
   // don't works with few filters
-  const onChangeHandler = (e) => (
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => (
     dispatch(setActiveType(0)), dispatch(setSearchValue(e.target.value))
   );
   const clearInput = () => (
-    dispatch(setSearchValue("")), searchInput.current.focus()
+    dispatch(setSearchValue("")), searchInput?.current?.focus()
   );
 
   return (
@@ -28,7 +33,7 @@ const Header = ({ search, cartBtn }) => {
       <div className="header-box">
         <div className="header-box__item-logo header-item header-item">
           <div className="header-item__logo">
-            <Link to={"/"} href="/" className="logo-link">
+            <Link to={"/"} className="logo-link">
               <img src={logo} alt="logo" className="logo-img" />
             </Link>
           </div>
@@ -71,9 +76,11 @@ const Header = ({ search, cartBtn }) => {
         {cartBtn && (
           <div className="header-box__item-cart header-item">
             <div className="header-item__cart">
-              <Link to={`/cart`} href="/" className="header-cart-button">
+              <Link to={`/cart`} className="header-cart-button">
                 {totalPrice > 0 && (
-                  <span className="cart-button__price">${totalPrice.toFixed(2)}</span>
+                  <span className="cart-button__price">
+                    ${totalPrice.toFixed(2)}
+                  </span>
                 )}
                 {items.length > 0 && (
                   <span className="cart-button__badge">{totalProducts}</span>

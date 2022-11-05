@@ -5,12 +5,12 @@ import Header from "../../components/Header/Header";
 import emptyImg from "../../assets/img/empty-cart-img.png";
 import "./cart.scss";
 import CartItem from "../../components/CartItem/CartItem";
-import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../redux/slices/cartSlice";
+import { useAppDispatch, useAppSelector } from "../../helpers/hooks";
 
 const Cart = () => {
-  const dispatch = useDispatch();
-  const items = useSelector((state) => state.cart.items);
+  const dispatch = useAppDispatch();
+  const items = useAppSelector((state) => state.cart.items);
   const totalProducts = items.reduce((prev, curr) => prev + curr.count, 0);
   const totalPrice = items.reduce(
     (prev, curr) => prev + curr.count * curr.price,
@@ -124,7 +124,7 @@ const Cart = () => {
             </p>
           </div>
           <div className="cart-footer__actions cart-actions">
-            <Link to={"/"} href="/">
+            <Link to={"/"}>
               <button className="cart-actions__back"> Back </button>
             </Link>
             <button className="cart-actions__checkout">Checkout</button>

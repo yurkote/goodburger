@@ -3,7 +3,7 @@ import Content from "../../components/Content/Content";
 import Header from "../../components/Header/Header";
 import SortBar from "../../components/SortBar/SortBar";
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <>
       <Header search cartBtn />

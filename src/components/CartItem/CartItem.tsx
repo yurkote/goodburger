@@ -1,12 +1,29 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../helpers/hooks";
+import { ProductItem } from "../../pages/Product/Product";
 import { addToCart, removeItem, minusItem } from "../../redux/slices/cartSlice";
 
 import "./cartitem.scss";
 
-const CartItem = ({ id, title, addons, imageUrl, count, price, cartIndex }) => {
-  const dispatch = useDispatch();
+type addon = {
+  title: string;
+  weightAddon: number;
+  priceAddon: number;
+}
+
+interface CartItemProps {
+  id: string;
+  title: string;
+  addons: addon[];
+  imageUrl: string;
+  count: number;
+  price: number;
+  cartIndex: number;
+}
+
+const CartItem: React.FC<CartItemProps> = ({ id, title, addons, imageUrl, count, price, cartIndex }) => {
+  const dispatch = useAppDispatch();
 
   const onClickRemove = () => {
     if (window.confirm("Remove item?")) {
@@ -14,12 +31,11 @@ const CartItem = ({ id, title, addons, imageUrl, count, price, cartIndex }) => {
     }
   };
   const onClickMinus = () => dispatch(minusItem(cartIndex));
-  const onClickPlus = () => dispatch(addToCart({ id, addons }));
+  const onClickPlus = () => dispatch(addToCart({ id, addons } as ProductItem));
 
   return (
     <div className="cart-content__item cart-item">
       <div className="cart-tem__left">
-        {/* link to product*/}
         <Link to={`/product/${id}`} className="cart-item__img">
           <img src={imageUrl} alt="product" />
         </Link>

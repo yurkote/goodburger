@@ -1,6 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+export type Sort = {
+  name: string;
+  sortProperty: string;
+};
+
+interface SortSlice {
+  activeType: number;
+  activePage: number;
+  activeSort: Sort;
+  inputValue: string;
+}
+
+const initialState: SortSlice = {
   activeType: 0,
   activePage: 1,
   activeSort: {
@@ -14,16 +26,16 @@ export const sortSlice = createSlice({
   name: "sort",
   initialState,
   reducers: {
-    setActiveType(state, action) {
+    setActiveType(state, action: PayloadAction<number>) {
       state.inputValue = "";
       action.payload === state.activeType
         ? (state.activeType = 0)
         : (state.activeType = action.payload);
     },
-    setActiveSort: (state, action) => {
+    setActiveSort: (state, action: PayloadAction<Sort>) => {
       state.activeSort = action.payload;
     },
-    setActivePage: (state, action) => {
+    setActivePage: (state, action: PayloadAction<number>) => {
       state.activePage = action.payload;
     },
     setParamsToState: (state, action) => {
@@ -32,7 +44,7 @@ export const sortSlice = createSlice({
       state.activeSort = action.payload.sort;
       state.inputValue = action.payload.inputValue;
     },
-    setSearchValue: (state, action) => {
+    setSearchValue: (state, action: PayloadAction<string>) => {
       state.activePage = 1;
       state.inputValue = action.payload;
     },

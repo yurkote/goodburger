@@ -1,11 +1,16 @@
 import React, { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../helpers/hooks";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
-import { setActiveType, setActiveSort, setActivePage } from "../../redux/slices/sortSlice";
+import {
+  setActiveType,
+  setActiveSort,
+  setActivePage,
+  Sort,
+} from "../../redux/slices/sortSlice";
 
 import "./sortbar.scss";
 
-export const sortVariant = [
+export const sortVariant: Sort[] = [
   { name: "Relevant", sortProperty: "weight" },
   { name: "Rating", sortProperty: "rating" },
   { name: "Price ↓", sortProperty: "price" },
@@ -14,22 +19,22 @@ export const sortVariant = [
   { name: "Z-a", sortProperty: "title" },
 ];
 const SortBar = () => {
-  const [openSort, setOpenSort] = useState(false);
-  const refSortWindow = useRef();
-  const { activeType, activeSort } = useSelector((state) => state.sort);
-  const dispatch = useDispatch();
+  const [openSort, setOpenSort] = useState<boolean>(false);
+  const refSortWindow = useRef(null);
+  const { activeType, activeSort } = useAppSelector((state) => state.sort);
+  const dispatch = useAppDispatch();
 
   useOnClickOutside(refSortWindow, () => setOpenSort(false));
 
   const typesDish = ["All", "Vege", "Chiken", "Beef", "Seafood", "Pork"];
   const sortDisplay = activeSort.name;
 
-  const handleClickType = (index) => (e) => {
+  const handleClickType = (index: number) => () => {
     dispatch(setActiveType(index));
     dispatch(setActivePage(1));
   };
 
-  const handleClickSort = (obj) => (e) => {
+  const handleClickSort = (obj: Sort) => () => {
     dispatch(setActiveSort(obj));
   };
 

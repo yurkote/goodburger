@@ -1,5 +1,4 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../helpers/hooks";
 import Card from "../Card/Card";
 import Pagination from "../Pagination/Pagination";
 import CardLoader from "./CardLoader";
@@ -7,7 +6,7 @@ import CardLoader from "./CardLoader";
 import "./content.scss";
 
 const Content = () => {
-  const { cards, status } = useSelector((state) => state.products);
+  const { cards, status } = useAppSelector((state) => state.products);
 
   return (
     <section className="content">

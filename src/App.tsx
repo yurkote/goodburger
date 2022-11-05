@@ -1,25 +1,25 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Cart from "./pages/Cart/Cart";
 import Home from "./pages/Home/Home";
 import Product from "./pages/Product/Product";
 import { Route, Routes, useSearchParams } from "react-router-dom";
 import ErrorPage from "./pages/Error";
 import "./app.scss";
-import { useDispatch, useSelector } from "react-redux";
 import { useDebounce } from "use-lodash-debounce";
 import { sortVariant } from "./components/SortBar/SortBar";
 import { setParamsToState } from "./redux/slices/sortSlice";
 import { fetchProducts } from "./redux/slices/productsSlice";
+import { useAppDispatch, useAppSelector } from "./helpers/hooks";
 
-const App = () => {
-  const { activeType, activeSort, activePage, inputValue } = useSelector(
+const App: React.FC = () => {
+  const { activeType, activeSort, activePage, inputValue } = useAppSelector(
     (state) => state.sort
   );
   const debouncedSearchValue = useDebounce(inputValue, 350);
   const [searchParams, setSearchParams] = useSearchParams();
-  const dispatch = useDispatch();
-  const query = useRef(false);
-  const firstRender = useRef(false);
+  const dispatch = useAppDispatch();
+  const query = useRef<boolean>(false);
+  const firstRender = useRef<boolean>(false);
 
   useEffect(() => {
     if ([...searchParams].length > 0) {
@@ -38,9 +38,9 @@ const App = () => {
     // because debouncedSearchValue has delay
     if (firstRender.current) {
       const params = {
-        activeType,
+        activeType: activeType.toString(),
         activeSort: activeSort.sortProperty,
-        activePage,
+        activePage: activePage.toString(),
         inputValue,
       };
       setSearchParams(params);
@@ -49,7 +49,7 @@ const App = () => {
 
     const sortBy = activeSort.sortProperty.replace("-", "");
     const order = activeSort.sortProperty.includes("-") ? "asc" : "desc";
-    const category = activeType > 0 ? `category=${activeType}` : "";
+    const category = +activeType > 0 ? `category=${activeType}` : "";
     const search = inputValue ? `&title=${inputValue}` : "";
 
     if (!query.current) {

@@ -1,13 +1,13 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../helpers/hooks";
 import { setActivePage } from "../../redux/slices/sortSlice";
 import "./pagination.scss";
 
 const Pagination = () => {
-  const { activePage } = useSelector((state) => state.sort);
-  const dispatch = useDispatch();
+  const { activePage } = useAppSelector((state) => state.sort);
+  const dispatch = useAppDispatch();
 
-  const handlePageClick = (page) => (e) => {
+  const handlePageClick = (page: number) => () => {
     dispatch(setActivePage(page));
   };
 

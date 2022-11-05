@@ -3,12 +3,27 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { addon } from "../../components/Card/Card";
 import Header from "../../components/Header/Header";
 import { dataUrl } from "../../helpers/linkData";
 import "./product.scss";
 
+export type ProductItem = {
+  addons : addon[];
+  calories: number;
+  category: number;
+  id: string;
+  imageUrl: string;
+  ingredients: string;
+  price: number;
+  rating: number;
+  title: string;
+  vege: boolean;
+  weight: number;
+}
+
 const Product = () => {
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState<ProductItem>();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -26,7 +41,7 @@ const Product = () => {
   }, []);
 
   if (!product) {
-    return "is loading...";
+    return <>is loading...</>;
   }
 
   return (
