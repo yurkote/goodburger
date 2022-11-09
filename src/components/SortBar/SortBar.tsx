@@ -18,7 +18,7 @@ export const sortVariant: Sort[] = [
   { name: "A-z", sortProperty: "-title" },
   { name: "Z-a", sortProperty: "title" },
 ];
-const SortBar = () => {
+const SortBar: React.FC = () => {
   const [openSort, setOpenSort] = useState<boolean>(false);
   const refSortWindow = useRef(null);
   const { activeType, activeSort } = useAppSelector((state) => state.sort);

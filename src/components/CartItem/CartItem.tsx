@@ -22,7 +22,7 @@ interface CartItemProps {
   cartIndex: number;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ id, title, addons, imageUrl, count, price, cartIndex }) => {
+const CartItem: React.FC<CartItemProps> = React.memo(({ id, title, addons, imageUrl, count, price, cartIndex }) => {
   const dispatch = useAppDispatch();
 
   const onClickRemove = () => {
@@ -52,7 +52,7 @@ const CartItem: React.FC<CartItemProps> = ({ id, title, addons, imageUrl, count,
         <div className="cart-item__count">
           <button
             onClick={onClickMinus}
-            disabled={count === 1 ? true : false}
+            disabled={count === 1}
             className="cart-item__count-minus"
           >
             —
@@ -71,6 +71,6 @@ const CartItem: React.FC<CartItemProps> = ({ id, title, addons, imageUrl, count,
       </div>
     </div>
   );
-};
+});
 
 export default CartItem;
