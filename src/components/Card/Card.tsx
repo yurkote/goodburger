@@ -10,7 +10,7 @@ export type addon = {
   title: string;
   weightAddon: number;
   priceAddon: number;
-}
+};
 
 interface CardProps {
   id: string;
@@ -22,7 +22,7 @@ interface CardProps {
   calories: number;
   addons: addon[];
   vege: boolean;
-};
+}
 
 const Card: React.FC<CardProps> = ({
   id,
@@ -44,7 +44,7 @@ const Card: React.FC<CardProps> = ({
   const dispatch = useAppDispatch();
 
   const handleClickAddOn =
-    (obj:addon, idx: number) => (e: React.MouseEvent<HTMLLIElement>) => {
+    (obj: addon, idx: number) => (e: React.MouseEvent<HTMLLIElement>) => {
       const ref = refAddOn.current[idx];
       if (!ref?.classList.contains("addon-active")) {
         ref?.classList.add("addon-active");
@@ -72,14 +72,14 @@ const Card: React.FC<CardProps> = ({
     };
     const btn = refAddBtn.current;
     btn?.classList.add("card-button__added");
-    addedList.forEach((item) => item?.classList.remove("addon-active"));
     setDisplayedPrice(price);
     setWeightProd(weight);
     dispatch(addToCart(obj as ProductItem));
+    addedList.forEach((item) => item?.classList.remove("addon-active"));
     const anim = btn?.animate([], { duration: 1000 });
+    setAddedAddons([]);
     anim?.addEventListener("finish", function () {
       btn?.classList.remove("card-button__added");
-      setAddedAddons([]);
     });
   };
   return (

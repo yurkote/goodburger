@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef } from "react";
+import React, { ChangeEvent, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { setActiveType, setSearchValue } from "../../redux/slices/sortSlice";
 
@@ -16,6 +16,7 @@ const Header: React.FC<HeaderProps> = ({ search, cartBtn }) => {
   const { items, totalPrice } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const searchInput = useRef<HTMLInputElement>(null);
+  const isMounted = useRef(false);
 
   const totalProducts = items.reduce((prev, curr) => prev + curr.count, 0);
 
@@ -28,6 +29,14 @@ const Header: React.FC<HeaderProps> = ({ search, cartBtn }) => {
     dispatch(setSearchValue("")), searchInput?.current?.focus()
   );
 
+  useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(items);
+      localStorage.setItem("cart", json);
+    }
+
+    isMounted.current = true;
+  }, [items]);
   return (
     <header className="header">
       <div className="header-box">
