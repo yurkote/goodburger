@@ -1,15 +1,22 @@
-import { useEffect, useRef } from "react";
-import Cart from "./pages/Cart/Cart";
-import Home from "./pages/Home/Home";
-import Product from "./pages/Product/Product";
+import React, { Suspense, useEffect, useRef } from "react";
+import Home from "./pages/Home";
 import { Route, Routes, useSearchParams } from "react-router-dom";
-import ErrorPage from "./pages/Error";
-import "./app.scss";
 import { useDebounce } from "use-lodash-debounce";
 import { sortVariant } from "./components/SortBar/SortBar";
 import { setParamsToState } from "./redux/slices/sortSlice";
 import { fetchProducts } from "./redux/slices/productsSlice";
 import { useAppDispatch, useAppSelector } from "./helpers/hooks";
+import "./app.scss";
+
+const Cart = React.lazy(
+  () => import(/* webpackChunkName: "Cart" */ "./pages/Cart")
+);
+const ErrorPage = React.lazy(
+  () => import(/* webpackChunkName: "Error" */ "./pages/Error")
+);
+const Product = React.lazy(
+  () => import(/* webpackChunkName: "Product" */ "./pages/Product")
+);
 
 const App: React.FC = () => {
   const { activeType, activeSort, activePage, inputValue } = useAppSelector(
@@ -63,9 +70,30 @@ const App: React.FC = () => {
       <div className="wrapper wrapper__container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<Product />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route
+            path="/product/:id"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Product />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Cart />
+              </Suspense>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <ErrorPage />
+              </Suspense>
+            }
+          />
         </Routes>
       </div>
     </>
