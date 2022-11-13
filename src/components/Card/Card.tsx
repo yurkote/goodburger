@@ -91,7 +91,7 @@ const Card: React.FC<CardProps> = ({
           </div>
         )}
         <Link to={`/product/${id}`}>
-          <img src={imageUrl} alt="dish" className="image-card" />
+          <img src={imageUrl} alt={title} className="image-card" />
           <div className="card-info info">
             <span className="info-kkal">~{calories}Kcal</span>
             <span className="info-weight">{weightProd}g</span>
