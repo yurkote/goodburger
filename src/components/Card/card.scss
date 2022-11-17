@@ -25,6 +25,8 @@
 }
 .card-img {
   position: relative;
+  background-color: $black;
+  border-radius: 6px 6px 0 0;
   a {
     display: block;
     width: 100%;
@@ -37,8 +39,8 @@
   top: 30px;
   span {
     border-radius: 50%;
-    background-color: $color-0;
-    color: greenyellow;
+    background-color: #000;
+    color: $color-vege;
     padding: rem(10);
   }
 }
@@ -66,19 +68,20 @@
   font-size: rem(20);
 }
 .info-kkal {
-  background-color: $color-0;
+  background-color: $black;
   padding: rem(10);
   border-radius: 20px;
 }
 .info-weight {
-  background-color: #000;
+  background-color: $black;
   padding: rem(10);
   border-radius: 20px;
 }
 .card-title {
+  $colorRGB: hexToRgb($color-4);
   font-size: rem(30);
   font-weight: 600;
-  background-color: rgba($color-4, 0.9);
+  background-color: rgba(var(--RGB_color-4), 0.9);
   padding: rem(15) rem(20);
   text-align: center;
   color: $color-0;
@@ -103,7 +106,7 @@
 }
 .addons-item {
   padding: rem(15);
-  background-color: #000;
+  background-color: $mainColor;
   border: 2px solid $color-3;
   border-radius: 25px;
   flex: 0 1 auto;
@@ -202,7 +205,8 @@
     background-color: $color-2;
   }
 }
-.card-button__added, .card-button__added:hover {
+.card-button__added,
+.card-button__added:hover {
   position: relative;
   z-index: 1;
   color: greenyellow;

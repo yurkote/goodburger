@@ -7,6 +7,8 @@ import { setParamsToState } from "./redux/slices/sortSlice";
 import { fetchProducts } from "./redux/slices/productsSlice";
 import { useAppDispatch, useAppSelector } from "./helpers/hooks";
 import "./app.scss";
+import { ThemeContext, themes } from "./theme/ThemeContext";
+import Toggle from "./components/Toggle";
 
 const Cart = React.lazy(
   () => import(/* webpackChunkName: "Cart" */ "./pages/Cart")
@@ -38,7 +40,7 @@ const App: React.FC = () => {
       query.current = true;
     }
   }, []);
-
+  console.log(ThemeContext.Consumer);
   useEffect(() => {
     // if open page with start 'search' query
     // requests to the server sends twice
@@ -67,6 +69,17 @@ const App: React.FC = () => {
 
   return (
     <>
+      <ThemeContext.Consumer>
+        {({ theme, setTheme }:any) => (
+          <Toggle
+            onChange={() => {
+              if (theme === themes.light) setTheme(themes.dark);
+              if (theme === themes.dark) setTheme(themes.light);
+            }}
+            value={theme === themes.dark}
+          />
+        )}
+      </ThemeContext.Consumer>
       <div className="wrapper wrapper__container">
         <Routes>
           <Route path="/" element={<Home />} />

@@ -51,9 +51,9 @@
   background: $color-2;
   background: linear-gradient(
     90deg,
-    rgba(155, 155, 0, 1) 0%,
-    rgba(255, 255, 0, 1) 50%,
-    rgba(155, 155, 0, 1) 100%
+    rgba(var(--RGB_color-2), 1) 0%,
+    rgba(var(--RGB_color-4), 1) 50%,
+    rgba(var(--RGB_color-2), 1) 100%
   );
   padding: rem(10);
   border-radius: 40px;
@@ -63,14 +63,14 @@
   font-weight: 400;
   &:hover {
     cursor: pointer;
-    background: rgb(155, 155, 0);
+    background: rgb(var(--RGB_color-2));
   }
 }
 .sortbar-active {
   background: none;
   background-color: $color-1;
   color: $color-3;
-  &:hover{
+  &:hover {
     background-color: $color-1;
   }
 }
@@ -112,7 +112,7 @@
   &-active {
     text-align: center;
     font-size: rem(18);
-    border-bottom: 1px dashed #000;
+    border-bottom: 1px dashed $mainColor;
     color: $color-0;
   }
 }
