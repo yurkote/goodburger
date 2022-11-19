@@ -209,8 +209,8 @@
 .card-button__added:hover {
   position: relative;
   z-index: 1;
-  color: greenyellow;
-  background-color: greenyellow;
+  color: $color-added;
+  background-color: $color-added;
   transition: all 0.4s ease;
   pointer-events: none;
   &::after {

@@ -45,18 +45,34 @@ $colors-dark: (
   color-3: #e6e600,
   color-4: #ff0,
   color-vege: #adff2f,
+  color-added: #40ff00,
 );
+// $colors-light-green: (
+//   mainColor: #faebd7,
+//   secondColor: #000,
+//   black: #000,
+
+//   color-0: #faebd7,
+//   color-1: #3CB371,
+//   color-2: #2E8B57,
+//   color-3: #228B22,
+//   color-4: #008000,
+//   color-vege: #adff2f,
+//   color-added: #adff2f,
+// );
+
 $colors-light: (
   mainColor: #faebd7,
   secondColor: #000,
   black: #000,
 
   color-0: #faebd7,
-  color-1: #3CB371,
-  color-2: #2E8B57,
-  color-3: #228B22,
-  color-4: #008000,
+  color-1: #ffb84d,
+  color-2: #ffad33,
+  color-3: #ffa31a,
+  color-4: #ff9900,
   color-vege: #adff2f,
+  color-added: #39e600,
 );
 
 
@@ -70,12 +86,7 @@ $color-3: var(--color-3);
 $color-4: var(--color-4);
 $color-vege: var(--color-vege);
 $black: var(--black);
-
-// $color-0: #000;
-// $color-1: #424200;
-// $color-2: #9b9b00;
-// $color-3: #e6e600;
-// $color-4: #ff0;
+$color-added: var(--color-added);
 
 // Настройки адаптивной сетки ===============================================================================================================================================================================================================================================================================================
 

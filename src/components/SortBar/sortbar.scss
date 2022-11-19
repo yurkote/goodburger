@@ -65,6 +65,9 @@
     cursor: pointer;
     background: rgb(var(--RGB_color-2));
   }
+  @media screen and (max-width: $mobileSmall) {
+    height: rem(40);
+  }
 }
 .sortbar-active {
   background: none;
@@ -85,6 +88,9 @@
   background-color: $color-3;
   margin-left: rem(15);
   border-radius: 30px;
+  @media screen and (max-width: $mobileSmall) {
+    height: rem(40);
+  }
 }
 .sort-button {
   padding: rem(15);
