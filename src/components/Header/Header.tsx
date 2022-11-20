@@ -1,11 +1,11 @@
-import React, { ChangeEvent, useEffect, useRef } from "react";
+import React, { useContext, ChangeEvent, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { setActiveType, setSearchValue } from "../../redux/slices/sortSlice";
 
 import logo from "../../assets/img/logo.png";
 import "./header.scss";
 import { useAppDispatch, useAppSelector } from "../../helpers/hooks";
-import { useTheme } from "../../hooks/useTheme";
+import { ThemeContext } from "../../context/ThemeContext";
 
 type HeaderProps = {
   search?: boolean;
@@ -18,7 +18,8 @@ const Header: React.FC<HeaderProps> = ({ search, cartBtn }) => {
   const dispatch = useAppDispatch();
   const searchInput = useRef<HTMLInputElement>(null);
   const isMounted = useRef(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useContext(ThemeContext);
+  console.log(theme);
 
   const totalProducts = items.reduce((prev, curr) => prev + curr.count, 0);
 
@@ -75,7 +76,6 @@ const Header: React.FC<HeaderProps> = ({ search, cartBtn }) => {
                   </svg>
                 </div>
               )}
-
               <input
                 ref={searchInput}
                 value={searchValue}

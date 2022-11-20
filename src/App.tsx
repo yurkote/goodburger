@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useRef } from "react";
+import React, {SetStateAction, Suspense, useEffect, useRef } from "react";
 import Home from "./pages/Home";
 import { Route, Routes, useSearchParams } from "react-router-dom";
 import { useDebounce } from "use-lodash-debounce";
@@ -7,6 +7,8 @@ import { setParamsToState } from "./redux/slices/sortSlice";
 import { fetchProducts } from "./redux/slices/productsSlice";
 import { useAppDispatch, useAppSelector } from "./helpers/hooks";
 import "./app.scss";
+import { useTheme } from "./hooks/useTheme";
+import { ThemeContext } from "./context/ThemeContext";
 const Cart = React.lazy(
   () => import(/* webpackChunkName: "Cart" */ "./pages/Cart")
 );
@@ -17,6 +19,11 @@ const Product = React.lazy(
   () => import(/* webpackChunkName: "Product" */ "./pages/Product")
 );
 
+type ContextType = {
+  theme: string,
+  setTheme: React.Dispatch<SetStateAction<string>>
+}
+
 const App: React.FC = () => {
   const { activeType, activeSort, activePage, inputValue } = useAppSelector(
     (state) => state.sort
@@ -26,6 +33,7 @@ const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const query = useRef<boolean>(false);
   const firstRender = useRef<boolean>(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     if ([...searchParams].length > 0) {
@@ -66,33 +74,35 @@ const App: React.FC = () => {
   return (
     <>
       <div className="wrapper wrapper__container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/product/:id"
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <Product />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/cart"
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <Cart />
-              </Suspense>
-            }
-          />
-          <Route
-            path="*"
-            element={
-              <Suspense fallback={<div>Loading...</div>}>
-                <ErrorPage />
-              </Suspense>
-            }
-          />
-        </Routes>
+        <ThemeContext.Provider value={{theme, setTheme}}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/product/:id"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Product />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Cart />
+                </Suspense>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <ErrorPage />
+                </Suspense>
+              }
+            />
+          </Routes>
+        </ThemeContext.Provider>
       </div>
     </>
   );
