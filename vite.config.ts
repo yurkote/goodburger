@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   // Підключаємо плагін для підтримки React (JSX, Fast Refresh)
-  base: '/goodburger/',
+  base: '/goodburger',
   plugins: [react()],
   server: {
     port: 3000, // Порт як у CRA
