@@ -13,24 +13,24 @@ type ProductItemParams = {
   order: string;
   category: string;
   search: string;
-  activePage: number
-}
+  activePage: number;
+};
 
 export enum Status {
   LOADING = "loading",
   SUCCESS = "success",
   ERROR = "error",
 }
-export const fetchProducts = createAsyncThunk<
-  ProductItem[],
-  ProductItemParams
->("products/fetchProductsStatus", async (params) => {
-  const { sortBy, order, category, search, activePage } = params;
-  const { data } = await axios.get<ProductItem[]>(
-    `${dataUrl}?p=${activePage}&l=6&${category}&sortBy=${sortBy}&order=${order}${search}`
-  );
-  return data;
-});
+export const fetchProducts = createAsyncThunk<ProductItem[], ProductItemParams>(
+  "products/fetchProductsStatus",
+  async (params) => {
+    const { sortBy, order, category, search, activePage } = params;
+    const { data } = await axios.get<ProductItem[]>(
+      `${dataUrl}?p=${activePage}&l=6&${category}&sortBy=${sortBy}&order=${order}${search}`
+    );
+    return data;
+  }
+);
 
 const initialState: ProductState = {
   cards: [],

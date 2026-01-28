@@ -1,4 +1,4 @@
-@import "../../scss/variables";
+@use "../../scss/variables" as *;
 
 .card {
   border-radius: 10px;
@@ -41,7 +41,7 @@
     border-radius: 50%;
     background-color: #000;
     color: $color-vege;
-    padding: rem(10);
+    padding: toRem(10);
   }
 }
 .image-card {
@@ -59,59 +59,59 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  padding-bottom: rem(10);
-  padding-right: rem(10);
+  padding-bottom: toRem(10);
+  padding-right: toRem(10);
   display: flex;
   color: $color-3;
-  gap: rem(20);
+  gap: toRem(20);
   align-items: center;
-  font-size: rem(20);
+  font-size: toRem(20);
 }
 .info-kkal {
   background-color: $black;
-  padding: rem(10);
+  padding: toRem(10);
   border-radius: 20px;
 }
 .info-weight {
   background-color: $black;
-  padding: rem(10);
+  padding: toRem(10);
   border-radius: 20px;
 }
 .card-title {
   $colorRGB: hexToRgb($color-4);
-  font-size: rem(30);
+  font-size: toRem(30);
   font-weight: 600;
   background-color: rgba(var(--RGB_color-4), 0.9);
-  padding: rem(15) rem(20);
+  padding: toRem(15) toRem(20);
   text-align: center;
   color: $color-0;
   text-transform: capitalize;
 }
 .card-addons-box {
   flex: 1 1 auto;
-  padding: rem(20) rem(10);
+  padding: toRem(20) toRem(10);
 }
 .addons-descr {
-  font-size: rem(20);
+  font-size: toRem(20);
   font-weight: 400;
-  padding-bottom: rem(20);
-  padding-left: rem(10);
+  padding-bottom: toRem(20);
+  padding-left: toRem(10);
 }
 .addons-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: rem(10);
+  gap: toRem(10);
 }
 .addons-item {
-  padding: rem(15);
+  padding: toRem(15);
   background-color: $mainColor;
   border: 2px solid $color-3;
   border-radius: 25px;
   flex: 0 1 auto;
   display: flex;
-  gap: rem(15);
+  gap: toRem(15);
   max-width: 300px;
   overflow: auto;
   justify-content: space-between;
@@ -126,7 +126,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: rem(16);
+    font-size: toRem(16);
     &:last-child {
       width: 50px;
     }
@@ -135,7 +135,7 @@
 .addon-active {
   background-color: $color-3;
   color: $color-0;
-  gap: rem(0);
+  gap: toRem(0);
   &:hover {
     background: $color-2;
   }
@@ -145,7 +145,7 @@
       color: transparent;
       &::after {
         content: "X";
-        font-size: rem(16);
+        font-size: toRem(16);
         line-height: 16px;
         position: absolute;
         top: -8px;
@@ -163,7 +163,7 @@
   }
 }
 .card-footer {
-  margin: rem(40) 0;
+  margin: toRem(40) 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -174,10 +174,10 @@
   justify-content: center;
   background-color: $color-3;
   color: $color-0;
-  height: rem(60);
+  height: toRem(60);
   width: 40%;
   text-align: center;
-  font-size: rem(22);
+  font-size: toRem(22);
   font-weight: 600;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -191,15 +191,15 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: rem(60);
+  height: toRem(60);
   width: 100%;
-  padding: 0 rem(8);
+  padding: 0 toRem(8);
   background-color: $color-3;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   color: $color-0;
   font-weight: 600;
-  font-size: rem(20);
+  font-size: toRem(20);
   transition: all 0.4s ease;
   &:hover {
     background-color: $color-2;
@@ -221,7 +221,7 @@
     width: 100%;
     height: 100%;
     color: black;
-    font-size: rem(35);
+    font-size: toRem(35);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -229,9 +229,9 @@
 }
 .card-button__counter {
   color: $color-4;
-  padding: rem(8);
+  padding: toRem(8);
   font-weight: 100;
-  font-size: rem(16);
+  font-size: toRem(16);
   background-color: $color-0;
   border-radius: 50%;
 }

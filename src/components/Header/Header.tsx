@@ -19,7 +19,6 @@ const Header: React.FC<HeaderProps> = ({ search, cartBtn }) => {
   const searchInput = useRef<HTMLInputElement>(null);
   const isMounted = useRef(false);
   const { theme, setTheme } = useContext(ThemeContext);
-  console.log(theme);
 
   const totalProducts = items.reduce((prev, curr) => prev + curr.count, 0);
 

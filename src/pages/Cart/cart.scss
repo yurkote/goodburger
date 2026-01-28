@@ -1,7 +1,7 @@
-@import "../../scss/variables";
+@use "../../scss/variables" as *;
 
 .cart {
-  padding: rem(50) 0;
+  padding: toRem(50) 0;
   color: $secondColor;
   margin: 0 auto;
   width: 100%;
@@ -12,14 +12,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: rem(15);
+  gap: toRem(15);
 }
 .cart-title {
   display: flex;
-  font-size: rem(50);
+  font-size: toRem(50);
   align-items: center;
   color: $color-4;
-  gap: rem(10);
+  gap: toRem(10);
   svg {
     width: 100%;
     height: 100%;
@@ -37,9 +37,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: rem(20);
-  gap: rem(5);
-  padding: rem(15) rem(5);
+  font-size: toRem(20);
+  gap: toRem(5);
+  padding: toRem(15) toRem(5);
   border-radius: 30px;
   border: 3px solid $color-3;
   transition: all 0.4s ease;
@@ -66,7 +66,7 @@
 .cart-content {
   display: flex;
   flex-direction: column;
-  gap: rem(20);
+  gap: toRem(20);
   min-height: 300px;
 }
 .empty-cart {
@@ -83,21 +83,21 @@
 }
 .cart-footer {
   display: flex;
-  padding: rem(20) 0;
+  padding: toRem(20) 0;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  gap: rem(20);
+  gap: toRem(20);
 }
 .cart-footer__info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: rem(20);
-  padding: rem(10) 0;
+  font-size: toRem(20);
+  padding: toRem(10) 0;
   @media screen and (max-width: $mobileSmall) {
     flex-direction: column;
-    gap: rem(10);
+    gap: toRem(10);
   }
 }
 .cart-footer__all-products {
@@ -122,7 +122,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: rem(10);
+  gap: toRem(10);
   @media screen and (max-width: $mobileSmall) {
     justify-content: center;
   }
@@ -130,9 +130,9 @@
 .cart-actions__back {
   width: 200px;
   border: 3px solid $color-4;
-  padding: rem(20);
+  padding: toRem(20);
   border-radius: 35px;
-  font-size: rem(20);
+  font-size: toRem(20);
   transition: all 0.4s ease;
   &:hover {
     border-color: $color-3;
@@ -151,8 +151,8 @@
   width: 200px;
   background-color: $color-4;
   color: $color-0;
-  font-size: rem(20);
-  padding: rem(20);
+  font-size: toRem(20);
+  padding: toRem(20);
   border-radius: 35px;
   border: 1px solid $color-4;
   transition: all 0.4s ease;

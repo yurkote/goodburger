@@ -1,5 +1,8 @@
 // @import '~bootstrap/scss/bootstrap.scss';
 @use "sass:math";
+@use "sass:meta";
+@use "sass:string";
+@use "sass:color";
 @import "./mixins";
 
 // Подключение шрифтов ===========================================================================================================================================================================================================================================================================
@@ -7,33 +10,66 @@
 
 // Шрифт по умолчанию
 $fontFamily: "Chivo", sans-serif;
-$fontSize: rem(14); // где 14(px) - размер шрифта по умолчанию из макета
+$fontSize: toRem(14); // где 14(px) - размер шрифта по умолчанию из макета
 
 // Основные цвета
 
 @function hexToRGB($hex) {
-  @return red($hex), green($hex), blue($hex);
+  // Витягуємо кожен канал кольору через color.channel
+  $r: color.channel($hex, "red", $space: rgb);
+  $g: color.channel($hex, "green", $space: rgb);
+  $b: color.channel($hex, "blue", $space: rgb);
+
+  @return #{$r}, #{$g}, #{$b};
 }
 
+// @function hexToRGB($hex) {
+//   @return red($hex), green($hex), blue($hex);
+// }
+
+// @mixin generate_colors($colors) {
+//   // Colors
+//   @each $color, $value in $colors {
+//     @if str-slice(#{$value}, 1, 1) == "#" {
+//       --#{$color}: #{$value};
+//     } @else {
+//       --#{$color}: var(--#{$value});
+//     }
+//   }
+
+//   // RGB Colors
+//   @each $color, $value in $colors {
+//     @if str-slice(#{$value}, 1, 1) == "#" {
+//       --RGB_#{$color}: #{hexToRGB($value)};
+//     } @else {
+//       --RGB_#{$color}: var(--RGB_#{$value});
+//     }
+//   }
+// }
 @mixin generate_colors($colors) {
-  // Colors
   @each $color, $value in $colors {
-    @if str-slice(#{$value}, 1, 1) == "#" {
-      --#{$color}: #{$value};
+    // Перетворюємо ключ $color на рядок, щоб уникнути попередження про "black"
+    $color-name: meta.inspect($color);
+
+    @if string.slice(meta.inspect($value), 1, 1) == "#" {
+      --#{$color-name}: #{$value};
     } @else {
-      --#{$color}: var(--#{$value});
+      --#{$color-name}: var(--#{$value});
     }
   }
 
-  // RGB Colors
+  // RGB блок так само
   @each $color, $value in $colors {
-    @if str-slice(#{$value}, 1, 1) == "#" {
-      --RGB_#{$color}: #{hexToRGB($value)};
+    $color-name: meta.inspect($color);
+
+    @if string.slice(meta.inspect($value), 1, 1) == "#" {
+      --RGB_#{$color-name}: #{hexToRGB($value)};
     } @else {
-      --RGB_#{$color}: var(--RGB_#{$value});
+      --RGB_#{$color-name}: var(--RGB_#{$value});
     }
   }
 }
+
 $colors-dark: (
   mainColor: #000,
   secondColor: #faebd7,
@@ -74,7 +110,6 @@ $colors-light: (
   color-vege: #adff2f,
   color-added: #39e600,
 );
-
 
 $mainColor: var(--mainColor); // Цвет шрифта по умолчанию
 $secondColor: var(--secondColor);
@@ -128,12 +163,12 @@ $responsiveType: 1;
   // Отзывчивая
   [class*="__container"] {
     @if ($maxWidthContainer>0) {
-      max-width: rem($maxWidthContainer);
+      max-width: toRem($maxWidthContainer);
       box-sizing: content-box;
       margin: 0 auto;
     }
     @if ($containerPadding>0) {
-      padding: 0 rem(math.div($containerPadding, 2));
+      padding: 0 toRem(math.div($containerPadding, 2));
     }
   }
 } @else {
@@ -141,23 +176,23 @@ $responsiveType: 1;
   [class*="__container"] {
     margin: 0 auto;
     @if ($maxWidthContainer>0) {
-      max-width: rem($maxWidthContainer);
+      max-width: toRem($maxWidthContainer);
       box-sizing: content-box;
     } @else {
       @if ($containerPadding>0) {
-        padding: 0 rem(math.div($containerPadding, 2));
+        padding: 0 toRem(math.div($containerPadding, 2));
       }
     }
     @media (max-width: $pc) {
-      max-width: rem(970);
+      max-width: toRem(970);
     }
     @media (max-width: $tablet) {
-      max-width: rem(750);
+      max-width: toRem(750);
     }
     @media (max-width: $mobile) {
       max-width: none;
       @if ($containerPadding>0 and $maxWidthContainer>0) {
-        padding: 0 rem(math.div($containerPadding, 2));
+        padding: 0 toRem(math.div($containerPadding, 2));
       }
     }
   }

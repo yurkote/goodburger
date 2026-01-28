@@ -34,6 +34,7 @@ const App: React.FC = () => {
   const query = useRef<boolean>(false);
   const firstRender = useRef<boolean>(false);
   const { theme, setTheme } = useTheme();
+  const contextValue = React.useMemo(() => ({theme, setTheme}), [theme])
 
   useEffect(() => {
     if ([...searchParams].length > 0) {
@@ -74,7 +75,7 @@ const App: React.FC = () => {
   return (
     <>
       <div className="wrapper wrapper__container">
-        <ThemeContext.Provider value={{theme, setTheme}}>
+        <ThemeContext.Provider value={contextValue}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route

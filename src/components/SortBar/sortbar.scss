@@ -1,19 +1,20 @@
-@import "../../scss/variables";
+@use "../../scss/variables" as *;
 
 .sortbar {
   background-color: $color-0;
-  padding: rem(20) 0;
+  padding: toRem(20) 0;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: space-around;
 }
 .sortbar-items {
-  margin-bottom: rem(10);
+  margin-bottom: toRem(10);
   &:nth-child(1) {
-    flex: 1 1 auto;
+    // flex: 1 1 auto;
     overflow: overlay;
     transition: all 1s ease;
+    margin-right: auto;
     &:hover {
       &::-webkit-scrollbar {
         transition: all 1s ease;
@@ -22,7 +23,7 @@
     }
     &::-webkit-scrollbar {
       display: none;
-      height: rem(5);
+      height: toRem(5);
       background-color: $color-2;
     }
     &::-webkit-scrollbar-thumb {
@@ -40,9 +41,11 @@
   }
 }
 .sortbar-list {
-  padding: rem(10);
+  padding: toRem(10) 0;
   display: flex;
-  gap: rem(10);
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: toRem(10);
 }
 .sortbar-list__button {
   display: flex;
@@ -55,18 +58,18 @@
     rgba(var(--RGB_color-4), 1) 50%,
     rgba(var(--RGB_color-2), 1) 100%
   );
-  padding: rem(10);
+  padding: toRem(10);
   border-radius: 40px;
-  height: 50px;
-  min-width: rem(120);
-  font-size: rem(20);
+  height: toRem(50);
+  min-width: toRem(120);
+  font-size: toRem(20);
   font-weight: 400;
   &:hover {
     cursor: pointer;
     background: rgb(var(--RGB_color-2));
   }
   @media screen and (max-width: $mobileSmall) {
-    height: rem(40);
+    height: toRem(40);
   }
 }
 .sortbar-active {
@@ -80,26 +83,27 @@
 .sorting-box {
   position: relative;
   height: 100%;
+  max-width: 220px;
   color: $color-4;
   display: flex;
   justify-content: center;
-  gap: rem(10);
+  gap: toRem(10);
   align-items: center;
   background-color: $color-3;
-  margin-left: rem(15);
+  margin-left: toRem(15);
   border-radius: 30px;
   @media screen and (max-width: $mobileSmall) {
-    height: rem(40);
+    height: toRem(40);
   }
 }
 .sort-button {
-  padding: rem(15);
+  padding: toRem(15);
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: rem(10);
+  gap: toRem(10);
   transition: all 0.4s ease;
   border-radius: 30px;
   &:hover {
@@ -108,38 +112,38 @@
   }
 }
 .sort-button__text {
-  font-size: rem(18);
+  font-size: toRem(18);
   color: $color-0;
   font-weight: 400;
   text-transform: lowercase;
   @media screen and (max-width: $mobile) {
-    display: none;
+    // display: none;
   }
   &-active {
     text-align: center;
-    font-size: rem(18);
+    font-size: toRem(18);
     border-bottom: 1px dashed $mainColor;
     color: $color-0;
   }
 }
 .sorting-select {
   position: absolute;
-  padding: rem(20) 0;
+  padding: toRem(20) 0;
   background-color: $color-4;
   border-radius: 15px;
-  top: rem(60);
-  right: rem(30);
+  top: toRem(60);
+  right: toRem(30);
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: rem(200);
+  width: toRem(200);
 }
 .sorting-select__item {
   width: 100%;
-  padding: rem(10) 0;
+  padding: toRem(10) 0;
   color: $color-0;
-  font-size: rem(20);
+  font-size: toRem(20);
   text-align: center;
   transition: all 0.4s ease;
   &:hover {

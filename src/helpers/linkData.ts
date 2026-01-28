@@ -1,1 +1,1 @@
-export const dataUrl= process.env.REACT_APP_mockapi;
+export const dataUrl = import.meta.env.VITE_mockapi;

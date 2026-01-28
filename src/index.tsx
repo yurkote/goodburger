@@ -10,7 +10,10 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <BrowserRouter>
+  <BrowserRouter
+    basename="/goodburger"
+    future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+  >
     <Provider store={store}>
       <App />
     </Provider>

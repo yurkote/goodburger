@@ -1,13 +1,13 @@
-@import "../../scss/variables";
+@use "../../scss/variables" as *;
 
 .header {
   background-color: $color-0;
-  padding: rem(20);
+  padding: toRem(20);
   &::after {
     content: "";
     display: block;
     margin: 0 auto;
-    margin-top: rem(10);
+    margin-top: toRem(10);
     height: 3px;
     width: 75%;
     background-color: $color-3;
@@ -23,7 +23,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: rem(20);
+  gap: toRem(20);
   @media screen and (max-width: $tablet) {
     flex-wrap: wrap;
   }
@@ -55,7 +55,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: rem(10);
+  gap: toRem(10);
   &__theme {
     flex: 0 0 50px;
     // background-color: #fff;
@@ -66,7 +66,7 @@
       height: 100%;
       border-radius: 50%;
       svg {
-        padding-top: rem(5);
+        padding-top: toRem(5);
         width: 60%;
         height: 60%;
         path {
@@ -84,8 +84,6 @@
     height: 50px;
   }
 }
-.logo-link {
-}
 .logo-img {
   width: 100%;
   object-fit: contain;
@@ -98,8 +96,8 @@
 }
 .header-input {
   border-radius: 10px;
-  padding: rem(5) rem(20);
-  height: rem(50);
+  padding: toRem(5) toRem(20);
+  height: toRem(50);
   width: 100%;
   background-color: #fff;
   background: linear-gradient(
@@ -109,7 +107,7 @@
     rgba(var(--RGB_color-2), 1) 100%
   );
   color: $mainColor;
-  font-size: rem(20);
+  font-size: toRem(20);
   &:hover {
     background: none;
     background-color: rgba(var(--RGB_color-3), 0.4);
@@ -126,7 +124,7 @@
     color: $mainColor;
   }
   @media screen and (max-width:$mobileSmall){
-    height: rem(40);
+    height: toRem(40);
   }
 }
 .header-input__icon {
@@ -150,12 +148,12 @@
   }
 }
 .header-item__cart {
-  height: rem(50);
+  height: toRem(50);
   width: 140px;
   border-radius: 10px;
   background-color: $color-4;
   @media screen and (max-width:$mobileSmall){
-    height: rem(40);
+    height: toRem(40);
   }
 }
 .header-cart-button {
@@ -163,7 +161,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: rem(10);
+  padding: toRem(10);
   border-radius: 10px;
   position: relative;
   background: linear-gradient(
@@ -187,9 +185,9 @@
   display: flex;
   align-items: center;
   height: 100%;
-  font-size: 20px;
-  padding-right: rem(5);
-  margin-right: rem(5);
+  font-size: toRem(20);
+  padding-right: toRem(5);
+  margin-right: toRem(5);
   border-right: 2px solid $color-0;
 }
 .cart-button__badge {
@@ -197,8 +195,8 @@
   overflow: hidden;
   top: -15px;
   right: -15px;
-  padding: rem(10);
-  padding-left: rem(12);
+  padding: toRem(10);
+  padding-left: toRem(12);
   width: 35px;
   height: 35px;
   background-color: $color-0;
@@ -206,7 +204,7 @@
   border: 1px solid $color-3;
   border-left: none;
   border-bottom: none;
-  font-size: rem(16);
+  font-size: toRem(16);
   border-radius: 50%;
   display: flex;
   justify-content: center;

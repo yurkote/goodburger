@@ -1,7 +1,7 @@
-@import "../../scss/variables";
+@use "../../scss/variables" as *;
 
 .pagination {
-  padding: rem(20) 0;
+  padding: toRem(20) 0;
 }
 .pagination-nav {
   &__prev {
@@ -11,12 +11,12 @@
 }
 .pagination-items {
   display: flex;
-  gap: rem(10);
+  gap: toRem(10);
 }
 .pagination__button {
   min-width: 50px;
   min-height: 50px;
-  padding: 0.9375rem;
+  padding: toRem(15);
   background-color: $mainColor;
   border: 2px solid $color-3;
   border-radius: 25px;

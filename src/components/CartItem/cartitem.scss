@@ -1,24 +1,24 @@
-@import "../../scss/variables";
+@use "../../scss/variables" as *;
 
 .cart-item {
-  padding: rem(20) 0;
+  padding: toRem(20) 0;
   display: flex;
   align-items: center;
-  gap: rem(10);
+  gap: toRem(10);
   border-bottom: 1px solid $color-4;
 }
 .cart-tem__left {
   flex: 0 0 50%;
   display: flex;
   align-items: center;
-  gap: rem(20);
+  gap: toRem(20);
   @media screen and (max-width: $mobile) {
     flex-direction: column;
     align-items: flex-start;
   }
 }
 .cart-item__img {
-  max-height: rem(150);
+  max-height: toRem(150);
   flex: 0 0 50%;
   border-radius: 20px;
   display: flex;
@@ -36,23 +36,23 @@
   justify-content: space-between;
   @media screen and (max-width: $mobile) {
     flex-direction: column;
-    gap: rem(20);
+    gap: toRem(20);
   }
 }
 .cart-item__info {
   flex: 1 1 auto;
   display: flex;
-  gap: rem(10);
+  gap: toRem(10);
   flex-direction: column;
   justify-content: center;
 }
 .cart-item__info-title {
-  font-size: rem(22);
+  font-size: toRem(22);
   color: $color-3;
   text-transform: capitalize;
 }
 .cart-item__info-addons {
-  font-size: rem(16);
+  font-size: toRem(16);
   line-height: 1.15;
   flex: 1 1 100%;
   max-height: 100px;
@@ -63,8 +63,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: rem(10);
-  font-size: rem(30);
+  gap: toRem(10);
+  font-size: toRem(30);
 }
 .cart-item__count-minus {
   width: 50px;
@@ -94,11 +94,11 @@
   @media screen and (max-width: $mobile) {
     width: 35px;
     height: 35px;
-    font-size: rem(20);
+    font-size: toRem(20);
   }
 }
 .cart-item__coun-num {
-  font-size: rem(25);
+  font-size: toRem(25);
 }
 .cart-item__count-plus {
   width: 50px;
@@ -106,12 +106,12 @@
   background-color: $color-3;
   border-radius: 50%;
   color: $color-0;
-  font-size: rem(52);
+  font-size: toRem(52);
   font-weight: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: rem(7);
+  padding-bottom: toRem(7);
   transition: all 0.3s ease;
   &:disabled {
     background-color: $color-1;
@@ -133,31 +133,31 @@
   @media screen and (max-width: $mobile) {
     width: 35px;
     height: 35px;
-    font-size: rem(35);
+    font-size: toRem(35);
   }
 }
 .cart-item__price {
   text-align: center;
   flex: 0 1 10%;
-  font-size: rem(25);
+  font-size: toRem(25);
   @media screen and (max-width: $mobile) {
   }
 }
 .cart-item__button {
-  width: rem(50);
-  height: rem(50);
+  width: toRem(50);
+  height: toRem(50);
   @media screen and (max-width: $mobile) {
     width: 50%;
     border-radius: 20px;
-    height: rem(35);
+    height: toRem(35);
   }
 }
 .cart-item__button-remove {
   width: 100%;
   height: 100%;
   font-weight: 600;
-  font-size: rem(20);
-  padding: rem(10);
+  font-size: toRem(20);
+  padding: toRem(10);
   border: 3px solid $color-3;
   background-color: transparent;
   border-radius: 50%;
@@ -175,7 +175,7 @@
     background-color: $color-2;
   }
   @media screen and (max-width: $mobile) {
-    font-size: rem(14);
+    font-size: toRem(14);
     border-radius: 20px;
   }
 }

@@ -1,9 +1,9 @@
 @use "sass:math";
 // @import '~bootstrap/scss/bootstrap.scss';
-@import "./scss/mixins";
-@import "./scss/variables";
-@import "./scss/null";
-@import "./scss/base";
+@use "./scss/mixins" as *;
+@use "./scss/variables" as *;
+@use "./scss/null" as *;
+@use "./scss/base" as *;
 
 // Скролл заблокирован
 .lock {
